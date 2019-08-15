@@ -9,18 +9,19 @@
 */
 
 --1. Все товары, в которых в название есть пометка urgent или название начинается с Animal
-SELECT        StockItemID, StockItemName
-FROM            Warehouse.StockItems
-WHERE        (StockItemName = N'urgent') OR
-                         (StockItemName = N'Animal%')
+SELECT        InvoiceLineID, InvoiceID, StockItemID, Description, PackageTypeID
+FROM            Sales.InvoiceLines
+WHERE        (Description LIKE '%urgent%') OR
+                         (Description = N'Animal%')
+
 						 
 /*
 2. Поставщиков, у которых не было сделано ни одного заказа 
 (потом покажем как это делать через подзапрос, сейчас сделайте через JOIN)*/
-SELECT        c.CustomerID
-FROM            Sales.Customers AS c LEFT JOIN
-                         Sales.Orders AS o ON c.CustomerID = o.CustomerID
-WHERE        (o.CustomerID IS NULL)
+SELECT        p.[PersonID]
+FROM            [Application].[People] AS p LEFT JOIN
+                         Sales.Orders AS o ON p.[PersonID] = o.[SalespersonPersonID]
+WHERE        (o.ContactPersonID IS NULL)
 
 /*
 3. Продажи с названием месяца, в котором была продажа, номером квартала, к которому относится продажа, 
@@ -62,3 +63,10 @@ ORDER BY  convert(datetime, o.OrderDate, 103) DESC
 /*
 6. Все ид и имена клиентов и их контактные телефоны, которые покупали товар Chocolate frogs 250g
 */
+SELECT       distinct Sales.Customers.CustomerID, Sales.Customers.CustomerName, Sales.Customers.PhoneNumber, Sales.InvoiceLines.InvoiceID, Sales.InvoiceLines.Description
+FROM            Sales.Customers INNER JOIN
+                         Sales.Orders ON Sales.Customers.CustomerID = Sales.Orders.CustomerID INNER JOIN
+                         Sales.Invoices ON Sales.Customers.CustomerID = Sales.Invoices.CustomerID   INNER JOIN
+                         Sales.InvoiceLines ON Sales.Invoices.InvoiceID = Sales.InvoiceLines.InvoiceID
+WHERE        (Sales.InvoiceLines.Description LIKE '%Chocolate frogs%')
+order by Sales.Customers.CustomerID
