@@ -1,3 +1,4 @@
+/*
 1. Выберите сотрудников, которые являются продажниками, и еще не сделали ни одной продажи.
 2. Выберите товары с минимальной ценой (подзапросом), 2 варианта подзапроса. 
 3. Выберите информацию по клиентам, которые перевели компании 5 максимальных платежей из [Sales].[CustomerTransactions] представьте 3 способа (в том числе с CTE)
@@ -25,4 +26,6 @@ FROM Sales.InvoiceLines
 GROUP BY InvoiceId
 HAVING SUM(Quantity*UnitPrice) > 27000) AS SalesTotals
 ON Invoices.InvoiceID = SalesTotals.InvoiceID
-ORDER BY TotalSumm DESC
+ORDER BY TotalSumm DESC*/
+
+--1. Выберите сотрудников, которые являются продажниками, и еще не сделали ни одной продажи.
