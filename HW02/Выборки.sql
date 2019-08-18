@@ -9,19 +9,21 @@
 */
 
 --1. Все товары, в которых в название есть пометка urgent или название начинается с Animal
-SELECT        InvoiceLineID, InvoiceID, StockItemID, Description, PackageTypeID
-FROM            Sales.InvoiceLines
-WHERE        (Description LIKE '%urgent%') OR
-                         (Description = N'Animal%')
-
-						 
+SELECT [StockItemID], 
+       [StockItemName]
+FROM [WideWorldImporters].[Warehouse].[StockItems]
+WHERE([StockItemName] LIKE '%urgent%')
+     OR ([StockItemName] = N'Animal%');
+	 
 /*
 2. Поставщиков, у которых не было сделано ни одного заказа 
 (потом покажем как это делать через подзапрос, сейчас сделайте через JOIN)*/
-SELECT        p.[PersonID]
-FROM            [Application].[People] AS p LEFT JOIN
-                         Sales.Orders AS o ON p.[PersonID] = o.[SalespersonPersonID]
-WHERE        (o.ContactPersonID IS NULL)
+SELECT p.PersonID, 
+       p.FullName
+FROM Application.People AS p
+     INNER JOIN Purchasing.Suppliers AS s ON p.PersonID = s.PrimaryContactPersonID
+     LEFT OUTER JOIN Sales.Orders AS o ON p.PersonID = o.PickedByPersonID
+WHERE(o.PickedByPersonID IS NULL);
 
 /*
 3. Продажи с названием месяца, в котором была продажа, номером квартала, к которому относится продажа, 
@@ -30,6 +32,24 @@ WHERE        (o.ContactPersonID IS NULL)
 Добавьте вариант этого запроса с постраничной выборкой пропустив первую 1000 и отобразив следующие 100 записей. 
 Соритровка должна быть по номеру квартала, трети года, дате продажи. 
 */
+SELECT DATENAME(mm, Sales.Orders.OrderDate) AS _Month, 
+       DATEPART(QUARTER, Sales.Orders.OrderDate) AS _QUARTER,
+       CASE
+           WHEN MONTH(OrderDate) BETWEEN 1 AND 4
+           THEN 1
+           WHEN MONTH(OrderDate) BETWEEN 5 AND 8
+           THEN 2
+           WHEN MONTH(OrderDate) BETWEEN 9 AND 12
+           THEN 3
+       END AS [Треть Года]
+FROM Sales.Orders
+     INNER JOIN Sales.OrderLines ON Sales.Orders.OrderID = Sales.OrderLines.OrderID
+WHERE(Sales.OrderLines.Quantity > 20)
+     OR ((Sales.OrderLines.UnitPrice > 100))
+ORDER BY _QUARTER, 
+         [Треть Года], 
+         Sales.Orders.OrderDate
+OFFSET 1000 ROWS FETCH FIRST 100 ROWS ONLY;
 
 /*
 4. Заказы поставщикам, которые были исполнены за 2014й год с доставкой Road Freight или Post, 
