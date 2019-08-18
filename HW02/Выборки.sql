@@ -88,5 +88,5 @@ FROM            Sales.Customers INNER JOIN
                          Sales.Orders ON Sales.Customers.CustomerID = Sales.Orders.CustomerID INNER JOIN
                          Sales.Invoices ON Sales.Customers.CustomerID = Sales.Invoices.CustomerID   INNER JOIN
                          Sales.InvoiceLines ON Sales.Invoices.InvoiceID = Sales.InvoiceLines.InvoiceID
-WHERE        (Sales.InvoiceLines.Description LIKE '%Chocolate frogs%')
+WHERE        (Sales.InvoiceLines.Description LIKE 'Chocolate frogs 250g')
 order by Sales.Customers.CustomerID
