@@ -55,14 +55,17 @@ OFFSET 1000 ROWS FETCH FIRST 100 ROWS ONLY;
 4. Заказы поставщикам, которые были исполнены за 2014й год с доставкой Road Freight или Post, 
 добавьте название поставщика, имя контактного лица принимавшего заказ
 */
+
+/*
 SELECT        o.OrderID, Sales.Customers.CustomerName, p.FullName, d.DeliveryMethodName
 FROM            Sales.Orders AS o INNER JOIN
                          Sales.Customers ON o.CustomerID = Sales.Customers.CustomerID INNER JOIN
                          Application.People AS p ON o.SalespersonPersonID = p.PersonID INNER JOIN
                          Sales.Invoices AS i ON i.OrderID = o.OrderID INNER JOIN
                          Application.DeliveryMethods AS d ON i.DeliveryMethodID = d.DeliveryMethodID
-WHERE        (YEAR(o.OrderDate) = '2014') AND (d.DeliveryMethodName = N'POST') OR
+WHERE        (YEAR(o.OrderDate) = 2014) AND (d.DeliveryMethodName = N'POST') and
                          (d.DeliveryMethodName = N'Road Freight')
+*/
 
 
 /*
