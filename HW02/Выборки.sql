@@ -74,7 +74,8 @@ OFFSET 1000 ROWS FETCH FIRST 100 ROWS ONLY;
 добавьте название поставщика, имя контактного лица принимавшего заказ
 */
 
-SELECT Purchasing.Suppliers.SupplierName, 
+SELECT DISTINCT 
+       Purchasing.Suppliers.SupplierName, 
        Purchasing.Suppliers.PrimaryContactPersonID, 
        p.FullName
 FROM Purchasing.Suppliers
@@ -82,8 +83,7 @@ FROM Purchasing.Suppliers
      INNER JOIN Application.DeliveryMethods AS d ON o.DeliveryMethodID = d.DeliveryMethodID
      INNER JOIN Application.People AS p ON Purchasing.Suppliers.PrimaryContactPersonID = p.PersonID
 WHERE(YEAR(o.OrderDate) = 2014)
-     AND (d.DeliveryMethodName = N'POST'
-          OR d.DeliveryMethodName = N'Road Freight');
+     AND d.DeliveryMethodName IN(N'POST', 'Road Freight');
 
 /*
 5. 10 последних по дате продаж с именем клиента и именем сотрудника, который оформил заказ.
