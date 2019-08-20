@@ -1,3 +1,4 @@
+
 /*
 Напишите выборки для того, чтобы получить:
 1. Все товары, в которых в название есть пометка urgent или название начинается с Animal
@@ -13,11 +14,12 @@ SELECT [StockItemID],
        [StockItemName]
 FROM [WideWorldImporters].[Warehouse].[StockItems]
 WHERE([StockItemName] LIKE '%urgent%')
-     OR ([StockItemName] = N'Animal%');
-	 
+     OR ([StockItemName] LIKE N'Animal%');
+
 /*
 2. Поставщиков, у которых не было сделано ни одного заказа 
 (потом покажем как это делать через подзапрос, сейчас сделайте через JOIN)*/
+
 SELECT p.PersonID, 
        p.FullName
 FROM Application.People AS p
@@ -32,6 +34,21 @@ WHERE(o.PickedByPersonID IS NULL);
 Добавьте вариант этого запроса с постраничной выборкой пропустив первую 1000 и отобразив следующие 100 записей. 
 Соритровка должна быть по номеру квартала, трети года, дате продажи. 
 */
+
+SELECT DATENAME(mm, Sales.Orders.OrderDate) AS _Month, 
+       DATEPART(QUARTER, Sales.Orders.OrderDate) AS _QUARTER, 
+       (MONTH(OrderDate) - 1) / 4 + 1 AS [Треть Года]
+FROM Sales.Orders
+     INNER JOIN Sales.OrderLines ON Sales.Orders.OrderID = Sales.OrderLines.OrderID
+WHERE(Sales.OrderLines.Quantity > 20)
+     OR ((Sales.OrderLines.UnitPrice > 100))
+ORDER BY _QUARTER, 
+         [Треть Года], 
+         Sales.Orders.OrderDate
+OFFSET 1000 ROWS FETCH FIRST 100 ROWS ONLY;
+
+/*
+через case
 SELECT DATENAME(mm, Sales.Orders.OrderDate) AS _Month, 
        DATEPART(QUARTER, Sales.Orders.OrderDate) AS _QUARTER,
        CASE
@@ -51,53 +68,48 @@ ORDER BY _QUARTER,
          Sales.Orders.OrderDate
 OFFSET 1000 ROWS FETCH FIRST 100 ROWS ONLY;
 
+*/
 /*
 4. Заказы поставщикам, которые были исполнены за 2014й год с доставкой Road Freight или Post, 
 добавьте название поставщика, имя контактного лица принимавшего заказ
 */
+
 SELECT Purchasing.Suppliers.SupplierName, 
-       Purchasing.Suppliers.PrimaryContactPersonID
+       Purchasing.Suppliers.PrimaryContactPersonID, 
+       p.FullName
 FROM Purchasing.Suppliers
      INNER JOIN Purchasing.PurchaseOrders AS o ON Purchasing.Suppliers.SupplierID = o.SupplierID
      INNER JOIN Application.DeliveryMethods AS d ON o.DeliveryMethodID = d.DeliveryMethodID
+     INNER JOIN Application.People AS p ON Purchasing.Suppliers.PrimaryContactPersonID = p.PersonID
 WHERE(YEAR(o.OrderDate) = 2014)
-     AND (d.DeliveryMethodName = N'POST')
-     AND (d.DeliveryMethodName = N'Road Freight');
-	 
-/*
-SELECT        o.OrderID, Sales.Customers.CustomerName, p.FullName, d.DeliveryMethodName
-FROM            Sales.Orders AS o INNER JOIN
-                         Sales.Customers ON o.CustomerID = Sales.Customers.CustomerID INNER JOIN
-                         Application.People AS p ON o.SalespersonPersonID = p.PersonID INNER JOIN
-                         Sales.Invoices AS i ON i.OrderID = o.OrderID INNER JOIN
-                         Application.DeliveryMethods AS d ON i.DeliveryMethodID = d.DeliveryMethodID
-WHERE        (YEAR(o.OrderDate) = 2014) AND (d.DeliveryMethodName = N'POST') and
-                         (d.DeliveryMethodName = N'Road Freight')
-*/
-
+     AND (d.DeliveryMethodName = N'POST'
+          OR d.DeliveryMethodName = N'Road Freight');
 
 /*
 5. 10 последних по дате продаж с именем клиента и именем сотрудника, который оформил заказ.
 */
-SELECT        TOP (10) o.OrderID, c.CustomerName, p.FullName, o.OrderDate
-FROM            Sales.Orders AS o INNER JOIN
-                         Sales.Customers AS c ON o.CustomerID = c.CustomerID INNER JOIN
-                         Application.People AS p ON o.SalespersonPersonID = p.PersonID
-ORDER BY o.OrderDate DESC
 
-SELECT        TOP (10) o.OrderID, c.CustomerName, p.FullName, o.OrderDate
-FROM            Sales.Orders AS o INNER JOIN
-                         Sales.Customers AS c ON o.CustomerID = c.CustomerID INNER JOIN
-                         Application.People AS p ON o.SalespersonPersonID = p.PersonID
-ORDER BY  convert(datetime, o.OrderDate, 103) DESC
+SELECT TOP (10) o.OrderID, 
+                c.CustomerName, 
+                p.FullName, 
+                o.OrderDate
+FROM Sales.Orders AS o
+     INNER JOIN Sales.Customers AS c ON o.CustomerID = c.CustomerID
+     INNER JOIN Application.People AS p ON o.SalespersonPersonID = p.PersonID
+ORDER BY o.OrderDate DESC;
 
 /*
 6. Все ид и имена клиентов и их контактные телефоны, которые покупали товар Chocolate frogs 250g
 */
-SELECT       distinct Sales.Customers.CustomerID, Sales.Customers.CustomerName, Sales.Customers.PhoneNumber, Sales.InvoiceLines.InvoiceID, Sales.InvoiceLines.Description
-FROM            Sales.Customers INNER JOIN
-                         Sales.Orders ON Sales.Customers.CustomerID = Sales.Orders.CustomerID INNER JOIN
-                         Sales.Invoices ON Sales.Customers.CustomerID = Sales.Invoices.CustomerID   INNER JOIN
-                         Sales.InvoiceLines ON Sales.Invoices.InvoiceID = Sales.InvoiceLines.InvoiceID
-WHERE        (Sales.InvoiceLines.Description LIKE 'Chocolate frogs 250g')
-order by Sales.Customers.CustomerID
+
+SELECT DISTINCT 
+       Sales.Customers.CustomerID, 
+       Sales.Customers.CustomerName, 
+       Sales.Customers.PhoneNumber
+FROM Sales.Customers
+     INNER JOIN Sales.Orders ON Sales.Customers.CustomerID = Sales.Orders.CustomerID
+     INNER JOIN Sales.Invoices ON Sales.Customers.CustomerID = Sales.Invoices.CustomerID
+     INNER JOIN Sales.InvoiceLines ON Sales.Invoices.InvoiceID = Sales.InvoiceLines.InvoiceID
+     INNER JOIN Warehouse.StockItems ON Sales.InvoiceLines.StockItemID = Warehouse.StockItems.StockItemID
+WHERE(Warehouse.StockItems.StockItemName LIKE N'Chocolate frogs 250g')
+ORDER BY Sales.Customers.CustomerID;
