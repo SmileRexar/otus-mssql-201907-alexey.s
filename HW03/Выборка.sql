@@ -161,3 +161,18 @@ SELECT s.StockItemID, s.StockItemName, s.UnitPrice
 FROM Warehouse.StockItems  AS s
 	JOIN StockItemsCTE AS ss
 		ON s.UnitPrice = ss.minUnitPrice
+
+
+/*
+3. Выберите информацию по клиентам, которые перевели компании 5 максимальных платежей из [Sales].[CustomerTransactions] 
+представьте 3 способа (в том числе с CTE)
+*/
+
+SELECT TOP (5) tr.[CustomerID], 
+               tr.TransactionAmount
+FROM [WideWorldImporters].[Sales].[CustomerTransactions] tr
+     INNER JOIN [WideWorldImporters].[Sales].[Customers] c ON tr.CustomerID = c.CustomerID
+GROUP BY tr.[CustomerID], 
+         tr.TransactionAmount
+ORDER BY tr.TransactionAmount DESC, 
+         [CustomerID];
