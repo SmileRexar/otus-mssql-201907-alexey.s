@@ -168,11 +168,57 @@ FROM Warehouse.StockItems  AS s
 представьте 3 способа (в том числе с CTE)
 */
 
-SELECT TOP (5) tr.[CustomerID], 
+SELECT TOP (5) tr.CustomerID, 
                tr.TransactionAmount
-FROM [WideWorldImporters].[Sales].[CustomerTransactions] tr
-     INNER JOIN [WideWorldImporters].[Sales].[Customers] c ON tr.CustomerID = c.CustomerID
-GROUP BY tr.[CustomerID], 
+FROM WideWorldImporters.Sales.CustomerTransactions AS tr
+     INNER JOIN WideWorldImporters.Sales.Customers AS c ON tr.CustomerID = c.CustomerID
+GROUP BY tr.CustomerID, 
          tr.TransactionAmount
 ORDER BY tr.TransactionAmount DESC, 
-         [CustomerID];
+         CustomerID;
+
+;WITH CustomerCTE(CustomerID, 
+                 TransactionAmount)
+     AS (SELECT TOP (5) tr.CustomerID, 
+                        tr.TransactionAmount
+         FROM WideWorldImporters.Sales.CustomerTransactions AS tr
+              INNER JOIN WideWorldImporters.Sales.Customers AS c ON tr.CustomerID = c.CustomerID
+         GROUP BY tr.CustomerID, 
+                  tr.TransactionAmount
+         ORDER BY tr.TransactionAmount DESC, 
+                  CustomerID)
+     SELECT CustomerID, 
+            TransactionAmount
+     FROM CustomerCTE;
+	 
+SELECT CustomerID, 
+       TransactionAmount
+FROM WideWorldImporters.Sales.CustomerTransactions AS tr
+     JOIN
+(
+    SELECT TOP (5) CustomerTransactionID
+    FROM WideWorldImporters.Sales.CustomerTransactions
+    ORDER BY TransactionAmount DESC,
+                  CustomerID
+) AS o ON tr.CustomerTransactionID = o.CustomerTransactionID;	 
+	 
+	 
+SELECT CustomerID, 
+       TransactionAmount
+FROM WideWorldImporters.Sales.CustomerTransactions AS tr
+WHERE tr.CustomerTransactionID IN
+(
+    SELECT TOP (5) CustomerTransactionID
+    FROM WideWorldImporters.Sales.CustomerTransactions
+    ORDER BY TransactionAmount DESC
+);	 
+
+/*
+4. Выберите города (ид и название), в которые были доставлены товары, входящие в тройку самых дорогих товаров,
+ а также Имя сотрудника, который осуществлял упаковку заказов
+ */
+ 
+ 
+ 
+ 
+ 
