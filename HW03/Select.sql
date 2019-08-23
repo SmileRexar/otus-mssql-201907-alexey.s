@@ -26,65 +26,9 @@ FROM Sales.InvoiceLines
 GROUP BY InvoiceId
 HAVING SUM(Quantity*UnitPrice) > 27000) AS SalesTotals
 ON Invoices.InvoiceID = SalesTotals.InvoiceID
-ORDER BY TotalSumm DESC*/
+ORDER BY TotalSumm DESC
 
-/*
-1. Выберите сотрудников, которые являются продажниками, и еще не сделали ни одной продажи.
 */
---не связанный подзапрос
-SELECT *
-FROM Application.People
-WHERE PersonId NOT IN
-(
-    SELECT SalespersonPersonID
-    FROM Sales.Invoices
-);
-
---связанный подзапрос
-SELECT *
-FROM Application.People p
-WHERE NOT EXISTS
-(
-    SELECT 1
-    FROM Sales.Invoices
-    WHERE SalespersonPersonID = p.PersonID
-)
-ORDER BY PersonID;
-
-
-/*
-2. Выберите товары с минимальной ценой (подзапросом), 2 варианта подзапроса. 
-*/
-
-/*
-1. Выберите сотрудников, которые являются продажниками, и еще не сделали ни одной продажи.
-2. Выберите товары с минимальной ценой (подзапросом), 2 варианта подзапроса. 
-3. Выберите информацию по клиентам, которые перевели компании 5 максимальных платежей из [Sales].[CustomerTransactions] представьте 3 способа (в том числе с CTE)
-4. Выберите города (ид и название), в которые были доставлены товары, входящие в тройку самых дорогих товаров, а также Имя сотрудника, который осуществлял упаковку заказов
-5. Объясните, что делает и оптимизируйте запрос:
-SELECT 
-Invoices.InvoiceID, 
-Invoices.InvoiceDate,
-(SELECT People.FullName
-FROM Application.People
-WHERE People.PersonID = Invoices.SalespersonPersonID
-) AS SalesPersonName,
-SalesTotals.TotalSumm AS TotalSummByInvoice, 
-(SELECT SUM(OrderLines.PickedQuantity*OrderLines.UnitPrice)
-FROM Sales.OrderLines
-WHERE OrderLines.OrderId = (SELECT Orders.OrderId 
-FROM Sales.Orders
-WHERE Orders.PickingCompletedWhen IS NOT NULL	
-AND Orders.OrderId = Invoices.OrderId)	
-) AS TotalSummForPickedItems
-FROM Sales.Invoices 
-JOIN
-(SELECT InvoiceId, SUM(Quantity*UnitPrice) AS TotalSumm
-FROM Sales.InvoiceLines
-GROUP BY InvoiceId
-HAVING SUM(Quantity*UnitPrice) > 27000) AS SalesTotals
-ON Invoices.InvoiceID = SalesTotals.InvoiceID
-ORDER BY TotalSumm DESC*/
 
 /*
 1. Выберите сотрудников, которые являются продажниками, и еще не сделали ни одной продажи.
@@ -217,8 +161,59 @@ WHERE tr.CustomerTransactionID IN
 4. Выберите города (ид и название), в которые были доставлены товары, входящие в тройку самых дорогих товаров,
  а также Имя сотрудника, который осуществлял упаковку заказов
  */
- 
- 
- 
- 
- 
+SELECT DISTINCT 
+       Application.Cities.CityName, 
+       Application.Cities.CityID, 
+       Sales.Invoices.PackedByPersonID
+FROM Sales.InvoiceLines
+     INNER JOIN Warehouse.StockItems AS StockItems ON Sales.InvoiceLines.StockItemID = StockItems.StockItemID
+     INNER JOIN Sales.Invoices ON Sales.InvoiceLines.InvoiceID = Sales.Invoices.InvoiceID
+     INNER JOIN Sales.CustomerTransactions AS CustomerTransactions
+     INNER JOIN Sales.Customers ON CustomerTransactions.CustomerID = Sales.Customers.CustomerID
+     INNER JOIN Application.Cities ON Sales.Customers.DeliveryCityID = Application.Cities.CityID ON Sales.Invoices.CustomerID = Sales.Customers.CustomerID
+WHERE(StockItems.StockItemID IN
+(
+    SELECT TOP (3) StockItemID
+    FROM Warehouse.StockItems AS StockItems
+    ORDER BY UnitPrice DESC
+))
+GROUP BY Application.Cities.CityName, 
+         Application.Cities.CityID, 
+         Sales.Invoices.PackedByPersonID
+order by Application.Cities.CityName
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------5. Объясните, что делает и оптимизируйте запрос:------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+/*
+SELECT 
+Invoices.InvoiceID, 
+Invoices.InvoiceDate,
+(SELECT People.FullName
+FROM Application.People
+WHERE People.PersonID = Invoices.SalespersonPersonID
+) AS SalesPersonName,
+SalesTotals.TotalSumm AS TotalSummByInvoice, 
+(SELECT SUM(OrderLines.PickedQuantity*OrderLines.UnitPrice)
+FROM Sales.OrderLines
+WHERE OrderLines.OrderId = (SELECT Orders.OrderId 
+FROM Sales.Orders
+WHERE Orders.PickingCompletedWhen IS NOT NULL	
+AND Orders.OrderId = Invoices.OrderId)	
+) AS TotalSummForPickedItems
+FROM Sales.Invoices 
+JOIN
+(SELECT InvoiceId, SUM(Quantity*UnitPrice) AS TotalSumm
+FROM Sales.InvoiceLines
+GROUP BY InvoiceId
+HAVING SUM(Quantity*UnitPrice) > 27000) AS SalesTotals
+ON Invoices.InvoiceID = SalesTotals.InvoiceID
+ORDER BY TotalSumm DESC*/
+*/
+
+/*
+ Анализ плана выполнения:
+1) В плане выполнения 4 раза читается таблица InvoiceLines и 4 раза читается таблица Invoices(На выходе InvoiceLines+Invoices), соединие hash join - оптимальное
+2) Содержимое шага 1 соединяется с чтением 4х раз таблицы people (На выходе InvoiceLines+Invoices+people), соединие hash join - оптимальное
+3) 4 раза читается OrderLines и 4 раза читается таблица Orders(OrderLines+Orders), соединие hash join - оптимальное
+4) Содение выборки из шага 2(InvoiceLines+Invoices) и 3(OrderLines+Orders) 
+*/
