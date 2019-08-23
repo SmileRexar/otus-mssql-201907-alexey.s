@@ -207,7 +207,7 @@ FROM Sales.InvoiceLines
 GROUP BY InvoiceId
 HAVING SUM(Quantity*UnitPrice) > 27000) AS SalesTotals
 ON Invoices.InvoiceID = SalesTotals.InvoiceID
-ORDER BY TotalSumm DESC*/
+ORDER BY TotalSumm DESC
 */
 
 /*
@@ -217,3 +217,69 @@ ORDER BY TotalSumm DESC*/
 3) 4 раза читается OrderLines и 4 раза читается таблица Orders(OrderLines+Orders), соединие hash join - оптимальное
 4) Содение выборки из шага 2(InvoiceLines+Invoices) и 3(OrderLines+Orders) 
 */
+/*
+Выводы:
+1) Необходимо сократить кол-во итераций при чтении таблиц
+2) Требуется проверить индексы и добавить покрывающие чтобы в листиях индекса были данные которые выбитрают select в выборках.
+3) (Опциональный) Если допускается для данного отчета делать грязное чтение данных чтобы не блокировать таблицы при select операциях
+*/
+
+--№1 Попытка переписать
+--вычисление сделок с клиентами на сумму более чем 27000
+;WITH InvoiceLinesCTE(InvoiceId, TotalSumm)
+	 AS (SELECT InvoiceId, SUM(Quantity * UnitPrice) AS TotalSumm
+		 FROM Sales.InvoiceLines
+		 GROUP BY InvoiceId
+		 HAVING SUM(Quantity * UnitPrice) > 27000)
+
+	 SELECT il.InvoiceId, i.InvoiceDate,
+	 (
+		 SELECT [FullName]
+		 FROM [Application].[People] AS p
+		 WHERE i.SalespersonPersonID = p.PersonID
+	 ) AS SalespersonPersonName, il.TotalSumm,
+	 (
+		 SELECT SUM(OrderLines.PickedQuantity * OrderLines.UnitPrice)
+		 FROM Sales.OrderLines
+		 WHERE OrderLines.OrderId =
+		 (
+			 SELECT Orders.OrderId
+			 FROM Sales.Orders
+			 WHERE Orders.OrderId = i.OrderID AND 
+			 Orders.PickingCompletedWhen IS NOT NULL  
+				   
+		 )
+	 ) AS TotalSummForPickedItems
+	 FROM InvoiceLinesCTE AS iL
+		  INNER JOIN
+		  [Sales].[Invoices] AS I
+		  ON iL.InvoiceId = i.InvoiceID
+		  ORDER BY il.TotalSumm DESC;
+		  
+		  
+--№2 Попытка переписать (стало хуже)
+--вычисление сделок с клиентами на сумму более чем 27000
+;WITH InvoiceLinesCTE(InvoiceId, TotalSumm)
+	 AS (SELECT InvoiceId, SUM(Quantity * UnitPrice) AS TotalSumm
+		 FROM Sales.InvoiceLines
+		 GROUP BY InvoiceId
+		 HAVING SUM(Quantity * UnitPrice) > 27000)
+
+	 SELECT il.InvoiceId, i.InvoiceDate,
+	 (
+		 SELECT [FullName]
+		 FROM [Application].[People] AS p
+		 WHERE i.SalespersonPersonID = p.PersonID
+	 ) AS SalespersonPersonName, il.TotalSumm,
+	 (
+		 SELECT SUM(ol.PickedQuantity * ol.UnitPrice)
+		 FROM Sales.OrderLines as OL
+		 inner join Sales.Orders as o
+		 on ol.OrderId = o.OrderID AND 
+			 ol.PickingCompletedWhen IS NOT NULL
+	 ) AS TotalSummForPickedItems
+	 FROM InvoiceLinesCTE AS iL
+		  INNER JOIN
+		  [Sales].[Invoices] AS I
+		  ON iL.InvoiceId = i.InvoiceID
+		  ORDER BY il.TotalSumm DESC;
