@@ -175,6 +175,32 @@ GROUP BY Application.Cities.CityName,
          Application.Cities.CityID, 
          Sales.Invoices.PackedByPersonID
 order by Application.Cities.CityName
+
+;WITH	StockItemsMaxPriceCTE(StockItemID)
+		AS 
+		(
+			SELECT TOP (3) StockItemID
+			FROM Warehouse.StockItems
+			ORDER BY UnitPrice DESC
+		),
+		UniqueCityCTE(CityName,CityID, PackedByPersonID)
+		AS 
+		(
+			SELECT DISTINCT Application.Cities.CityName,Application.Cities.CityID,Sales.Invoices.PackedByPersonID
+			FROM Sales.InvoiceLines
+			INNER JOIN Warehouse.StockItems AS StockItems ON Sales.InvoiceLines.StockItemID = StockItems.StockItemID
+			INNER JOIN Sales.Invoices ON Sales.InvoiceLines.InvoiceID = Sales.Invoices.InvoiceID
+			INNER JOIN Sales.CustomerTransactions AS CustomerTransactions
+			INNER JOIN Sales.Customers ON CustomerTransactions.CustomerID = Sales.Customers.CustomerID
+			INNER JOIN Application.Cities ON Sales.Customers.DeliveryCityID = Application.Cities.CityID ON Sales.Invoices.CustomerID = Sales.Customers.CustomerID
+         WHERE StockItems.StockItemID IN
+         (
+             SELECT StockItemID
+             FROM StockItemsMaxPriceCTE
+         )
+         GROUP BY Application.Cities.CityName,Application.Cities.CityID,Sales.Invoices.PackedByPersonID
+		)
+SELECT CityName,CityID,PackedByPersonID FROM UniqueCityCTE ORDER BY CityName;
 -----------------------------------------------------------------------------------------------------------------------
 -----------------------------------5. Объясните, что делает и оптимизируйте запрос:------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
