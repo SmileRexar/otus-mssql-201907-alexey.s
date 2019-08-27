@@ -40,7 +40,8 @@ WHERE PersonId NOT IN
 (
     SELECT SalespersonPersonID
     FROM Sales.Invoices
-);
+	WHERE IsSalesperson=1
+)  
 
 --связанный подзапрос
 SELECT *
@@ -50,6 +51,7 @@ WHERE NOT EXISTS
     SELECT 1
     FROM Sales.Invoices
     WHERE SalespersonPersonID = p.PersonID
+	AND IsSalesperson=1
 )
 ORDER BY PersonID;
 
@@ -100,7 +102,6 @@ FROM Warehouse.StockItems
 group by UnitPrice,StockItemName,StockItemID
 order by MIN(UnitPrice)
 )
-
 SELECT s.StockItemID, s.StockItemName, s.UnitPrice
 FROM Warehouse.StockItems  AS s
 	JOIN StockItemsCTE AS ss
@@ -111,51 +112,44 @@ FROM Warehouse.StockItems  AS s
 3. Выберите информацию по клиентам, которые перевели компании 5 максимальных платежей из [Sales].[CustomerTransactions] 
 представьте 3 способа (в том числе с CTE)
 */
-
-SELECT TOP (5) tr.CustomerID, 
-               tr.TransactionAmount
+SELECT TOP (5) tr.CustomerID, tr.TransactionAmount
 FROM WideWorldImporters.Sales.CustomerTransactions AS tr
-     INNER JOIN WideWorldImporters.Sales.Customers AS c ON tr.CustomerID = c.CustomerID
-GROUP BY tr.CustomerID, 
-         tr.TransactionAmount
-ORDER BY tr.TransactionAmount DESC, 
-         CustomerID;
+	 INNER JOIN
+	 WideWorldImporters.Sales.Customers AS c
+	 ON tr.CustomerID = c.CustomerID
+GROUP BY tr.CustomerID, tr.TransactionAmount
+	 ORDER BY tr.TransactionAmount DESC, CustomerID;
 
-;WITH CustomerCTE(CustomerID, 
-                 TransactionAmount)
-     AS (SELECT TOP (5) tr.CustomerID, 
-                        tr.TransactionAmount
-         FROM WideWorldImporters.Sales.CustomerTransactions AS tr
-              INNER JOIN WideWorldImporters.Sales.Customers AS c ON tr.CustomerID = c.CustomerID
-         GROUP BY tr.CustomerID, 
-                  tr.TransactionAmount
-         ORDER BY tr.TransactionAmount DESC, 
-                  CustomerID)
-     SELECT CustomerID, 
-            TransactionAmount
-     FROM CustomerCTE;
-	 
-SELECT CustomerID, 
-       TransactionAmount
+;WITH CustomerCTE(CustomerID, TransactionAmount)
+	 AS (SELECT TOP (5) tr.CustomerID, tr.TransactionAmount
+		 FROM WideWorldImporters.Sales.CustomerTransactions AS tr
+			  INNER JOIN
+			  WideWorldImporters.Sales.Customers AS c
+			  ON tr.CustomerID = c.CustomerID
+		 GROUP BY tr.CustomerID, tr.TransactionAmount
+			  ORDER BY tr.TransactionAmount DESC, CustomerID)
+	 SELECT CustomerID, TransactionAmount
+	 FROM CustomerCTE;
+
+SELECT CustomerID, TransactionAmount
 FROM WideWorldImporters.Sales.CustomerTransactions AS tr
-     JOIN
+	 JOIN
 (
-    SELECT TOP (5) CustomerTransactionID
-    FROM WideWorldImporters.Sales.CustomerTransactions
-    ORDER BY TransactionAmount DESC,
-                  CustomerID
-) AS o ON tr.CustomerTransactionID = o.CustomerTransactionID;	 
-	 
-	 
-SELECT CustomerID, 
-       TransactionAmount
+	SELECT TOP (5) CustomerTransactionID
+	FROM WideWorldImporters.Sales.CustomerTransactions
+	ORDER BY TransactionAmount DESC, CustomerID
+) AS o
+	 ON tr.CustomerTransactionID = o.CustomerTransactionID;
+
+SELECT CustomerID, TransactionAmount
 FROM WideWorldImporters.Sales.CustomerTransactions AS tr
 WHERE tr.CustomerTransactionID IN
 (
-    SELECT TOP (5) CustomerTransactionID
-    FROM WideWorldImporters.Sales.CustomerTransactions
-    ORDER BY TransactionAmount DESC
+	SELECT TOP (5) CustomerTransactionID
+	FROM WideWorldImporters.Sales.CustomerTransactions
+	ORDER BY TransactionAmount DESC
 );	 
+
 
 /*
 4. Выберите города (ид и название), в которые были доставлены товары, входящие в тройку самых дорогих товаров,
