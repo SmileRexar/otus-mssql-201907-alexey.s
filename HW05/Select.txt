@@ -52,3 +52,45 @@ ORDER BY SumTotalPrice;
 SELECT FORMAT(i.InvoiceDate , 'MMMM' , 'en-US') AS _Month , [InvoiceLineID] , i.InvoiceID , [Quantity] * [UnitPrice] AS TotalPrice
 FROM [WideWorldImporters].[Sales].[InvoiceLines] AS iL INNER JOIN [Sales].[Invoices] AS i ON iL.InvoiceID = i.[InvoiceID]
 WHERE [Quantity] * [UnitPrice] > 10000;
+
+
+--3. Написать рекурсивный CTE sql запрос и заполнить им временную таблицу и табличную переменную
+DECLARE @tempVariable_Employees TABLE
+( 
+EmployeeID int, Name nvarchar(max), 
+Title nvarchar(max), 
+EmployeeLevel int
+);
+
+IF OBJECT_ID('tempdb..##tempTable_Employees') IS NOT NULL
+BEGIN
+	DROP TABLE ##tempTable_Employees;
+END;
+
+;WITH MyEmployeesCTE(EmployeeID, Name, Title, EmployeeLevel)
+	 AS (
+	 --базовый случай
+	 SELECT [EmployeeID], [FirstName] + [LastName], [Title], 1
+	 FROM [Test].[dbo].[MyEmployees]
+	 WHERE ManagerID IS NULL
+  
+	 -- рекурсивный случай
+	 UNION ALL
+	 SELECT e.[EmployeeID], [FirstName] + [LastName], e.[Title], EmployeeLevel + 1
+	 FROM [Test].[dbo].[MyEmployees] AS E
+		  INNER JOIN
+		  MyEmployeesCTE AS my
+		  ON e.ManagerID = my.EmployeeID)
+	 SELECT *
+	 INTO ##tempTable_Employees
+	 FROM MyEmployeesCTE;
+
+
+INSERT INTO @tempVariable_Employees
+SELECT * FROM ##tempTable_Employees;
+
+SELECT *
+FROM ##tempTable_Employees;
+
+SELECT *
+FROM @tempVariable_Employees;
