@@ -70,9 +70,9 @@ SELECT SUM([Quantity] * [UnitPrice]) AS TotalPrice,
 		MONTH(i.InvoiceDate) AS Month    
 FROM Sales.Invoices AS i
      INNER JOIN Sales.InvoiceLines AS IL ON IL.InvoiceID = i.InvoiceID
-GROUP BY YEAR(i.InvoiceDate), MONTH(i.InvoiceDate) 
-HAVING(SUM(MONTH(i.InvoiceDate)) > 50)
-ORDER BY TotalPrice
+GROUP BY YEAR(i.InvoiceDate), MONTH(i.InvoiceDate), [Quantity]
+HAVING(SUM(Quantity) < 50)
+ 
 
 
 --4. Написать рекурсивный CTE sql запрос и заполнить им временную таблицу и табличную переменную
