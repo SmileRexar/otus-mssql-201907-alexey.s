@@ -156,3 +156,64 @@ SELECT
 		,[UnitPrice]
   FROM [WideWorldImporters].[Warehouse].[StockItems]
 FOR XML PATH('Item'), ROOT('StockItems'), ELEMENTS
+
+/*
+3. В таблице StockItems в колонке CustomFields есть данные в json.
+Написать select для вывода:
+- StockItemID
+- StockItemName
+- CountryOfManufacture (из CustomFields)
+- Range (из CustomFields)
+*/
+SELECT StockItemID, 
+       StockItemName, 
+       JSON_VALUE(CustomFields, '$.CountryOfManufacture') AS CountryOfManufacture, 
+       JSON_VALUE(CustomFields, '$.Range') AS Range1
+FROM [WideWorldImporters].[Warehouse].[StockItems];
+
+/*
+4. Найти в StockItems строки, где есть тэг "Vintage"
+Запрос написать через функции работы с JSON.
+Тэги искать в поле CustomFields, а не в Tags.
+*/
+SELECT CustomFields, 
+       StockItemID, 
+       StockItemName, 
+       JSON_VALUE(CustomFields, '$.CountryOfManufacture') AS CountryOfManufacture, 
+       JSON_VALUE(CustomFields, '$.Range') AS Range1, 
+       JSON_VALUE(CustomFields, '$.Tags[0]') AS aaa
+FROM [WideWorldImporters].[Warehouse].[StockItems]
+WHERE JSON_VALUE(CustomFields, '$.Tags[0]') = 'Vintage'
+      OR JSON_VALUE(CustomFields, '$.Tags[1]') = 'Vintage';
+	  
+	  
+	  
+/*
+5. Пишем динамический PIVOT. 
+По заданию из 8го занятия про CROSS APPLY и PIVOT 
+Требуется написать запрос, который в результате своего выполнения формирует таблицу следующего вида:
+Название клиента
+МесяцГод Количество покупок
+
+Нужно написать запрос, который будет генерировать результаты для всех клиентов 
+имя клиента указывать полностью из CustomerName
+дата должна иметь формат dd.mm.yyyy например 25.12.2019	  
+*/
+	  
+--начальный pivot, статический	  
+SELECT *
+FROM
+(
+    SELECT format([InvoiceDate], 'MM-yyyy') AS Data1, 
+           c.[CustomerName] AS [CustomerName], 
+           COUNT(*) AS [Count]
+    FROM [WideWorldImporters].[Sales].[Invoices] AS i
+         INNER JOIN [Sales].[Customers] AS c ON i.CustomerID = c.CustomerID
+    WHERE i.CustomerID BETWEEN 2 AND 6
+    GROUP BY format([InvoiceDate], 'MM-yyyy'), 
+             c.[CustomerName]
+) AS Cl PIVOT(SUM([Count]) FOR [CustomerName] IN([Tailspin Toys (Sylvanite, MT)], 
+                                                 [Tailspin Toys (Peeples Valley, AZ)], 
+                                                 [Tailspin Toys (Medicine Lodge, KS)], 
+                                                 [Tailspin Toys (Gasport, NY)], 
+                                                 [Tailspin Toys (Jessie, ND)])) AS PVT
