@@ -217,3 +217,38 @@ FROM
                                                  [Tailspin Toys (Medicine Lodge, KS)], 
                                                  [Tailspin Toys (Gasport, NY)], 
                                                  [Tailspin Toys (Jessie, ND)])) AS PVT
+												 
+												 
+												 
+--начальный pivot, динамический	 
+												 
+ --переменная названий столбцов
+DECLARE @PivotColumns AS NVARCHAR(MAX)
+DECLARE @SqlQuery as nvarchar(max)
+
+SET @PivotColumns = N'';
+--склейка столбцов для вывода
+SELECT @PivotColumns += QUOTENAME([CustomerName]) + ', '
+FROM [Sales].[Customers]
+where CustomerID between 2 and 6
+
+--Убрать последний разделитель ,
+SET @PivotColumns = LEFT(@PivotColumns, LEN(@PivotColumns)-1)
+PRINT @PivotColumns
+
+set @SqlQuery = 
+'
+SELECT *
+FROM
+(
+    SELECT format([InvoiceDate], ''MM-yyyy'') AS Data1, 
+           c.[CustomerName] AS [CustomerName], 
+           COUNT(*) AS [Count]
+    FROM [WideWorldImporters].[Sales].[Invoices] AS i
+         INNER JOIN [Sales].[Customers] AS c ON i.CustomerID = c.CustomerID
+     WHERE i.CustomerID BETWEEN 2 AND 6
+    GROUP BY format([InvoiceDate], ''MM-yyyy''), 
+             c.[CustomerName]
+) AS Cl PIVOT(SUM([Count]) FOR [CustomerName] IN(' +@PivotColumns +')) AS PVT'
+print @SqlQuery
+EXEC SP_EXECUTESQL @SqlQuery
