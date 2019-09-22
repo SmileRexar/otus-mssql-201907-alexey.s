@@ -203,6 +203,23 @@ FROM [WideWorldImporters].[Warehouse].[StockItems];
 Запрос написать через функции работы с JSON.
 Тэги искать в поле CustomFields, а не в Tags.
 */
+
+	  
+ --subTree cost 0.085
+SELECT CustomFields, 
+       StockItemID, 
+       StockItemName, 
+       JSON_VALUE(CustomFields, '$.CountryOfManufacture') AS CountryOfManufacture, 
+       JSON_VALUE(CustomFields, '$.Range') AS Range1, 
+       JSON_VALUE(CustomFields, '$.Tags[0]') AS aaa
+FROM [WideWorldImporters].[Warehouse].[StockItems] s
+CROSS APPLY OPENJSON(JSON_QUERY(CustomFields, '$.Tags')) as j
+WHERE j.[value] like 'Vintage'
+
+	  
+/*
+old query
+--subTree cost 0.013
 SELECT CustomFields, 
        StockItemID, 
        StockItemName, 
@@ -212,9 +229,8 @@ SELECT CustomFields,
 FROM [WideWorldImporters].[Warehouse].[StockItems]
 WHERE JSON_VALUE(CustomFields, '$.Tags[0]') = 'Vintage'
       OR JSON_VALUE(CustomFields, '$.Tags[1]') = 'Vintage';
-	  
-	  
-	  
+*/
+
 /*
 5. Пишем динамический PIVOT. 
 По заданию из 8го занятия про CROSS APPLY и PIVOT 
