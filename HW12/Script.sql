@@ -49,6 +49,28 @@ CREATE TABLE #tmpStockItems(
 )
 GO
 
+
+DECLARE @fileData xml
+Select @fileData=BulkColumn
+     FROM OpenRowSet(Bulk 'C:\Source\otus-mssql-201907-alexey.s\HW12\StockItems-188-f89807.xml', Single_blob ) x;
+
+INSERT INTO #tmpStockItems (SupplierID, StockItemName, UnitPackageID,OuterPackageID, QuantityPerOuter, TypicalWeightPerUnit, LeadTimeDays, IsChillerStock, TaxRate,UnitPrice) 
+SELECT X.product.query('SupplierID').value('.', 'INT'),
+	   X.product.value('@Name', 'NVARCHAR(100)'),
+       X.product.query('Package/UnitPackageID').value('.', 'INT'),
+	   X.product.query('Package/OuterPackageID').value('.', 'INT'),
+	   X.product.query('Package/QuantityPerOuter').value('.', 'INT'),
+	   X.product.query('Package/TypicalWeightPerUnit').value('.', 'DECIMAL(18,3)'),
+	   X.product.query('LeadTimeDays').value('.', 'INT'),
+	   X.product.query('IsChillerStock').value('.', 'BIT'),
+	   X.product.query('TaxRate').value('.', 'DECIMAL(18,3)'),
+	   X.product.query('UnitPrice').value('.', 'DECIMAL(18,3)')
+FROM (SELECT @fileData) AS Tt(x)
+CROSS APPLY x.nodes('StockItems/Item') AS X(product);
+
+SELECT * FROM #tmpStockItems
+
+/*
 INSERT INTO #tmpStockItems (SupplierID, StockItemName, UnitPackageID,OuterPackageID, QuantityPerOuter, TypicalWeightPerUnit, LeadTimeDays, IsChillerStock, TaxRate,UnitPrice) 
 SELECT X.product.query('SupplierID').value('.', 'INT'),
 	   X.product.value('@Name', 'NVARCHAR(100)'),
@@ -70,7 +92,7 @@ CROSS APPLY x.nodes('StockItems/Item') AS X(product);
 GO
 
 SELECT * FROM #tmpStockItems
- 
+ */
 /*
 Устаревший код
 select *
