@@ -34,7 +34,6 @@ XML, JSON и динамический SQL
 Файл StockItems.xml в личном кабинете.
 */
 
-
 DROP TABLE IF EXISTS #tmpStockItems
 CREATE TABLE #tmpStockItems(
 	SupplierID INT,
@@ -49,7 +48,6 @@ CREATE TABLE #tmpStockItems(
 	UnitPrice DECIMAL(18,3)
 )
 GO
-
 
 INSERT INTO #tmpStockItems (SupplierID, StockItemName, UnitPackageID,OuterPackageID, QuantityPerOuter, TypicalWeightPerUnit, LeadTimeDays, IsChillerStock, TaxRate,UnitPrice) 
 SELECT X.product.query('SupplierID').value('.', 'INT'),
@@ -69,10 +67,12 @@ FROM OPENROWSET(
      SINGLE_BLOB) AS T(x)
      ) AS T(x)
 CROSS APPLY x.nodes('StockItems/Item') AS X(product);
+GO
 
 SELECT * FROM #tmpStockItems
  
 /*
+Устаревший код
 select *
 from #tmpStockItems
 t inner join [Warehouse].[StockItems] s
@@ -80,7 +80,19 @@ on t.StockItemName=s.StockItemName
 COLLATE SQL_Latin1_General_CP1_CI_AS
 where s.StockItemName is null
 */
+GO
 
+/*
+Режим отладки.
+1 - включен, вывод текстовых сообщений
+0 - выключен
+*/
+DECLARE @DebugMode int=1
+
+BEGIN TRY
+BEGIN TRANSACTION;
+
+--обновление совпадающих записей
 IF EXISTS(
 SELECT t.*
 FROM #tmpStockItems
@@ -104,12 +116,14 @@ FROM [Warehouse].[StockItems] s
 INNER JOIN #tmpStockItems t
 on s.StockItemName=t.StockItemName
 COLLATE SQL_Latin1_General_CP1_CI_AS
+	if(@DebugMode<>0)
+	print  'Updated succeed'
 END
 ELSE
+	if(@DebugMode<>0)
     print  'Don''t have row for update'
 
-
-
+--вставка новых записей
 IF NOT EXISTS(
 select t.*
 from #tmpStockItems
@@ -118,8 +132,10 @@ on t.StockItemName=s.StockItemName
 COLLATE SQL_Latin1_General_CP1_CI_AS
 where s.StockItemName is null
 )
-   print  'Table #tmpStockItems don''t have new Items to record'
+	if(@DebugMode<>0)
+	print 'Table #tmpStockItems don''t have new Items to record'
 ELSE
+begin
    insert into [Warehouse].[StockItems](
 	   [SupplierID],
        [StockItemName]
@@ -139,6 +155,17 @@ t left join [Warehouse].[StockItems] s
 on t.StockItemName=s.StockItemName
 COLLATE SQL_Latin1_General_CP1_CI_AS
 where s.StockItemName is null
+	if(@DebugMode<>0)
+	print 'Inserted succeed'
+end
+  COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+        BEGIN
+            ROLLBACK TRANSACTION;
+        END
+    END CATCH;
 
 /*
 2. Выгрузить данные из таблицы StockItems в такой же xml-файл, как StockItems.xml
