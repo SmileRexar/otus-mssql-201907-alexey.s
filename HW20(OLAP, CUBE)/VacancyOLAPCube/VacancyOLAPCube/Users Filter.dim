@@ -1,0 +1,223 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="d08adfb8-5369-4f3c-a483-0bbd1bfb6f8e" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Users Filter</ID>
+  <Name>Users Filter</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="e2eca7d2-1968-478d-abb3-003530f33147">
+    <DataSourceViewID>Vacancy Agregator</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="7ef9407a-eaff-4d47-86e7-f3aeeba8021a">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="e19796c3-7dfb-4758-b752-087da4661de0">
+      <ID>Users Filter ID</ID>
+      <Name>Users Filter ID</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="0da7a158-1aeb-4550-bda4-dd128c4f4e36">
+          <DataType>BigInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="848f2f07-19b5-4360-98f6-ed9d8ca082a0">
+            <TableID>Operation_UsersFilter</TableID>
+            <ColumnID>UsersFilterID</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="af109538-99fe-43c1-bdd9-290ac44dd557">
+          <AttributeID>Search Filter</AttributeID>
+          <Name>Search Filter</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="43a21b0f-281f-48cc-a222-6547ddca5ea0">
+          <AttributeID>Is Enabled</AttributeID>
+          <Name>Is Enabled</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="37724319-2cdd-4fbb-852e-24d5b77d346c">
+          <AttributeID>User ID</AttributeID>
+          <Name>User ID</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="395e5d4c-e26a-4466-8eaa-bd7a35fa1610">
+          <AttributeID>Provider ID</AttributeID>
+          <Name>Provider ID</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="de845198-d77e-4d7f-9b52-573f0f7d9248">
+      <ID>Search Filter</ID>
+      <Name>Search Filter</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="33f12d07-b03e-4ea9-8269-711d7938adcb">
+          <DataType>WChar</DataType>
+          <DataSize>150</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="79b253a3-c6b4-40c0-a4ac-e2bb968d7fd7">
+            <TableID>Operation_UsersFilter</TableID>
+            <ColumnID>SearchFilter</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="11ed2943-7760-48c0-91ea-627d66929d8d">
+      <ID>Is Enabled</ID>
+      <Name>Is Enabled</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4ec69d08-50f4-4b5c-ba38-6125da1cc641">
+          <DataType>Boolean</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2b61b705-7d52-4dab-9dfa-f936c09dad6d">
+            <TableID>Operation_UsersFilter</TableID>
+            <ColumnID>isEnabled</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="867d50bb-41a7-4e2e-9df8-89e1beb57f5d">
+      <ID>User ID</ID>
+      <Name>User ID</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="97541ae4-da9f-416f-9930-077c662fbc2d">
+          <DataType>BigInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4e8b9c9f-5494-475c-8ec7-4fa7f90f4ca9">
+            <TableID>Operation_Users</TableID>
+            <ColumnID>UserID</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="4cbd9233-9033-47f7-b6f9-50b52f5b041b">
+          <AttributeID>Operator Name</AttributeID>
+          <Name>Operator Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="721fe015-52d6-4356-8ab3-77458e52fc77">
+          <AttributeID>Permission ID</AttributeID>
+          <Name>Permission ID</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="fb8a7b72-4e29-48e4-aad1-6b9d9fa407a5">
+      <ID>Operator Name</ID>
+      <Name>Operator Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="221be989-abc8-4b0a-a07f-7dc8b890e7c9">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c0ff2db4-8a5b-41de-b88a-edf18804b0f1">
+            <TableID>Operation_Users</TableID>
+            <ColumnID>OperatorName</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="4772b852-7e1f-4607-b348-bcab6c227eda">
+      <ID>Permission ID</ID>
+      <Name>Permission ID</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2c7fdb0b-f86f-4b87-af8b-3928eae93efd">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="0345740a-5199-4839-9e61-e242c79590a7">
+            <TableID>Operation_Users</TableID>
+            <ColumnID>PermissionID</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="18c1330f-5121-47b0-a659-bfcdd07c6772">
+      <ID>Provider ID</ID>
+      <Name>Provider ID</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="52ba553d-7274-4160-adc8-231e558b56ad">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1e97854a-e888-4d40-bf66-841f42470e54">
+            <TableID>App_Providers</TableID>
+            <ColumnID>ProviderID</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="2e80d8ab-89b5-4adf-8200-7bad4ab25497">
+          <AttributeID>Name</AttributeID>
+          <Name>Name_</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="49e136f5-f807-469d-a335-6559db9946c8">
+      <ID>Name</ID>
+      <Name>Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="caef55d4-3864-4f8f-990e-210a99cf65f8">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="24fab0bd-2af6-4c44-a896-58e924f56157">
+            <TableID>App_Providers</TableID>
+            <ColumnID>Name</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

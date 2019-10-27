@@ -1,0 +1,259 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="ad3d367f-e3c5-4c5c-b892-c3eeb9f2e6e8" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Salary List</ID>
+  <Name>Salary List</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="efbebde5-aab8-4530-9e53-b86ad9c846ee">
+    <DataSourceViewID>Vacancy Agregator</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="a3cfe294-c8b2-4898-82f2-bc14b6e3c79a">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="aaeb3c24-0dd6-4008-a73f-6ae845f2872b">
+      <ID>Salary ID</ID>
+      <Name>Salary ID</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="3cd79782-8e48-4686-9974-7e1c2a9a8411">
+          <DataType>BigInt</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6e23f9bb-9a2e-4b05-b5c2-6b3003316369">
+            <TableID>rpt_SalaryList</TableID>
+            <ColumnID>SalaryID</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="5b50b4f7-dddf-4ef8-b7a9-b957ca9142db">
+          <AttributeID>Count Of Vacancy</AttributeID>
+          <Name>Count Of Vacancy</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="08e554d4-5903-4120-9e36-14c213b6118b">
+          <AttributeID>Count Vacancies With Sum</AttributeID>
+          <Name>Count Vacancies With Sum</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="1e47b4ee-c6b4-4cda-872a-d4f293e4b3a7">
+          <AttributeID>Total Vacancies</AttributeID>
+          <Name>Total Vacancies</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b64072f8-1fa9-491f-bcdd-aa714cd5d53b">
+          <AttributeID>Salary</AttributeID>
+          <Name>Salary</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9db929e4-e620-47e9-82a4-39adc21fcc37">
+          <AttributeID>Date Actual</AttributeID>
+          <Name>Date Actual</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="689b8dcc-8655-401f-a475-bbde65b1a00a">
+          <AttributeID>Is Enabled</AttributeID>
+          <Name>Is Enabled</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="9cb77b4e-8d2d-422f-ab50-9ae3c58f6e97">
+          <AttributeID>Operator Name</AttributeID>
+          <Name>Operator Name</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3de4ef2a-7ed8-4fbd-9dc0-c0a415d909ef">
+          <AttributeID>Email</AttributeID>
+          <Name>Email</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="5c34a885-d09d-4ad4-95ab-256c3decc39b">
+          <AttributeID>Name</AttributeID>
+          <Name>Name_</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="215d36f9-4aa7-4c9d-89af-a26877060cfb">
+      <ID>Count Of Vacancy</ID>
+      <Name>Count Of Vacancy</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="52aa44e0-225b-46bf-a32f-b449ab442111">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d0647d73-3529-4c65-a5ac-db5ca6e8a7d3">
+            <TableID>rpt_SalaryList</TableID>
+            <ColumnID>CountOfVacancy</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="dd00b336-23d2-41cf-8c2d-e8cad68b7c3f">
+      <ID>Count Vacancies With Sum</ID>
+      <Name>Count Vacancies With Sum</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="feed1ceb-5978-4e02-83df-6a5acbc771c8">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="8427de1e-6b07-4f2a-926e-2b10cbf36fc2">
+            <TableID>rpt_SalaryList</TableID>
+            <ColumnID>CountVacanciesWithSum</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="31fa61f0-501d-4f68-a2d4-4a3c3289fa36">
+      <ID>Total Vacancies</ID>
+      <Name>Total Vacancies</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6370ef8e-8005-4eec-b728-bcf8ffd1d021">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="3a2dbedf-de6d-4caa-9802-1b9a06b01523">
+            <TableID>rpt_SalaryList</TableID>
+            <ColumnID>TotalVacancies</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="be17e32c-efd4-4afd-8a5c-ecb314e5f764">
+      <ID>Salary</ID>
+      <Name>Salary</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="33123c81-a358-4412-b22f-2932d44a5d96">
+          <DataType>Double</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f3bc9ff5-ef0d-4f7e-ab99-c2fc6dc683eb">
+            <TableID>rpt_SalaryList</TableID>
+            <ColumnID>Salary</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f434f24b-8c09-4e89-8487-f0974774dcd3">
+      <ID>Date Actual</ID>
+      <Name>Date Actual</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ffce05e4-cd3a-4047-b35e-1f52d0a72705">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="99031a2f-35ea-427b-8fb5-a2cb082990d1">
+            <TableID>rpt_SalaryList</TableID>
+            <ColumnID>DateActual</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="86c38903-38d3-4589-b49e-a0ce0106636e">
+      <ID>Is Enabled</ID>
+      <Name>Is Enabled</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="d7381f40-4a1e-454c-bb6f-114781611cec">
+          <DataType>Boolean</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1d99dd25-d1e3-4313-8483-5e4d308a9f04">
+            <TableID>Operation_UsersFilter</TableID>
+            <ColumnID>isEnabled</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="11c7614e-9bc3-4429-8b4e-36de51d5b37d">
+      <ID>Operator Name</ID>
+      <Name>Operator Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="934bf06a-9150-4dea-ab65-5b691eea8688">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="afe5c867-e85b-4123-8c28-7745a99d349a">
+            <TableID>Operation_Users</TableID>
+            <ColumnID>OperatorName</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="60eb2a05-4fa2-45e6-bc72-40e17a298804">
+      <ID>Email</ID>
+      <Name>Email</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="56b409d2-96c6-4d50-8497-19746b26469f">
+          <DataType>WChar</DataType>
+          <DataSize>150</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2ca913d4-de7e-4633-a17e-5c791f2116cc">
+            <TableID>Operation_Users</TableID>
+            <ColumnID>Email</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="04b12b11-977f-49a9-a397-46a2b1bc4260">
+      <ID>Name</ID>
+      <Name>Name</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="1574995c-ec27-41b3-9de4-1cf8004e54f3">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="7f10d779-5452-40e6-a7cd-80abf94b7d7c">
+            <TableID>App_Providers</TableID>
+            <ColumnID>Name</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

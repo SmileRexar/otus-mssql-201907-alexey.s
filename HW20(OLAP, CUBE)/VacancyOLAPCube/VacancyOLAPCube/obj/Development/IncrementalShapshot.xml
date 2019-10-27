@@ -1,0 +1,82 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>VacancyOLAPCube</Database>
+    <Server>localhost</Server>
+    <ConnectionString>Data Source=localhost;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>0xgyO/kOGeV5/qF9gA7m9oasMEA=10/27/2019 4:51:40 PM10/27/2019 4:51:40 PM</TimeStamp>
+        <ID>
+          <String>VacancyAgregatorDB</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>gX4nA2JYCbXCFkWSP7oqigohOKw=10/27/2019 5:32:15 PM10/27/2019 5:29:33 PM</TimeStamp>
+        <ID>
+          <String>Vacancy Agregator</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>NB8zrvs3QMiAM91nVZTntAmODo0=10/27/2019 5:35:31 PM10/27/2019 5:35:30 PM</TimeStamp>
+        <ID>
+          <String>Salary List</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>z4WBttCCWbv2o0btUYHunoV9/tU=10/27/2019 5:36:46 PM10/27/2019 5:36:46 PM</TimeStamp>
+        <ID>
+          <String>Users Filter</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>cIQ/NcXwMbvGfp1NVUz+avCR4E4=10/27/2019 5:37:09 PM10/27/2019 5:37:09 PM</TimeStamp>
+        <ID>
+          <String>Users</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>lUKHWkcha8NkgqCJeqEeJgUYzNE=10/27/2019 5:37:24 PM10/27/2019 5:37:23 PM</TimeStamp>
+        <ID>
+          <String>Providers</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>iv8StzZEulNyVIH9ULy7qFZIvg8=10/27/2019 5:48:26 PM10/27/2019 5:40:18 PMjl9moEUNgvpHrulBBq2qJoAvYng=10/27/2019 5:40:18 PM10/27/2019 5:40:18 PM</TimeStamp>
+        <ID>
+          <String>Vacancy Agregator</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>pX/V0R9A3/TRKa9q9mcSw8c6VwU=10/27/2019 4:50:25 PM10/27/2019 4:50:23 PM</TimeStamp>
+      <ID>
+        <String>VacancyOLAPCube</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2019-10-27T19:00:23.653333Z</LastDeployed>
+</DeploymentSnapshot>

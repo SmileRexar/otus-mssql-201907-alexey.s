@@ -1,0 +1,308 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="6f528e3b-63eb-44a6-9b2b-68b1e7740d54" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Vacancy Agregator</ID>
+  <Name>Vacancy Agregator</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout>
+              <dds>
+                <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="9" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-6069" scrolltop="-5125" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="17410" y="19923" backcolor="16777215" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+                  <font>
+                    <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+                  </font>
+                  <mouseicon>
+                    <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+                  </mouseicon>
+                </diagram>
+                <layoutmanager>
+                  <ddsxmlobj />
+                </layoutmanager>
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="UsersFilter" left="63" top="3700" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3000" height="3149" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobjectstreaminitwrapper binary="000e0000b80b00004d0c0000" />
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="Operation_UsersFilter" vartype="8" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <shape groupshapeid="0" groupnode="0" />
+                </ddscontrol>
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="SalaryList" left="6707" top="5840" logicalid="2" controlid="2" masterid="0" hint1="0" hint2="0" width="4419" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobjectstreaminitwrapper binary="000e00004311000088130000" />
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="rpt_SalaryList" vartype="8" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <shape groupshapeid="0" groupnode="0" />
+                </ddscontrol>
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Users" left="20" top="9249" logicalid="3" controlid="3" masterid="0" hint1="0" hint2="0" width="3043" height="2725" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobjectstreaminitwrapper binary="000e0000e30b0000a50a0000" />
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="Operation_Users" vartype="8" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <shape groupshapeid="0" groupnode="0" />
+                </ddscontrol>
+                <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Providers" left="6754" top="-344" logicalid="4" controlid="4" masterid="0" hint1="0" hint2="0" width="3000" height="3149" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobjectstreaminitwrapper binary="000e0000b80b00004d0c0000" />
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="App_Providers" vartype="8" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <shape groupshapeid="0" groupnode="0" />
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline" left="1142" top="6549" logicalid="5" controlid="5" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK_UsersFilter_Users]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="1" sourceattachpoint="4" destattachpoint="5" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="1541" y="9249" />
+                    <point x="1541" y="8049" />
+                    <point x="1563" y="8049" />
+                    <point x="1563" y="6849" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline" left="2763" top="831" logicalid="6" controlid="6" masterid="0" hint1="0" hint2="0" width="4291" height="3643" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK_ProvidersFilter_Provider]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="1" sourceattachpoint="14" destattachpoint="11" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="6754" y="1230" />
+                    <point x="4618" y="1230" />
+                    <point x="4618" y="4174" />
+                    <point x="3063" y="4174" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline" left="2763" top="5425" logicalid="7" controlid="7" masterid="0" hint1="0" hint2="0" width="4244" height="3215" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK_SalaryList_UsersFilter]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="2" sourceattachpoint="17" destattachpoint="22" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="3063" y="5824" />
+                    <point x="4263" y="5824" />
+                    <point x="4263" y="8340" />
+                    <point x="6707" y="8340" />
+                  </connector>
+                </ddscontrol>
+                <ddscontrol controlprogid="MSDDS.Polyline" left="6755" top="2306" logicalid="8" controlid="8" masterid="0" hint1="0" hint2="0" width="1911" height="3834" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+                  <control>
+                    <ddsxmlobj>
+                      <polyline endtypedst="6" endtypesrc="3" usercolor="0" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+                    </ddsxmlobj>
+                  </control>
+                  <layoutobject>
+                    <ddsxmlobj>
+                      <property name="LogicalObject" value="dataSet.Relations[FK_SalaryList_ImporterProvider]" vartype="8" />
+                      <property name="Virtual" value="0" vartype="11" />
+                      <property name="VisibleAP" value="0" vartype="3" />
+                    </ddsxmlobj>
+                  </layoutobject>
+                  <connector lineroutestyle="MSDDS.Rectilinear" sourceid="4" destid="2" sourceattachpoint="1" destattachpoint="4" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                    <point x="7154" y="2805" />
+                    <point x="7154" y="4177" />
+                    <point x="8366" y="4177" />
+                    <point x="8366" y="5840" />
+                  </connector>
+                </ddscontrol>
+              </dds>
+</DiagramLayout>
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>-6069</DiagramViewPortLeft>
+            <DiagramViewPortTop>-5125</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>VacancyAgregatorDB</DataSourceID>
+  <Schema>
+    <xs:schema id="Vacancy_x0020_Agregator" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Vacancy_x0020_Agregator" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="1f10bcca-c75f-46c1-b368-8c1798d728bb">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Operation_UsersFilter" msprop:design-time-name="fad73894-040c-4ec4-b3c7-acfa718b346c" msprop:FriendlyName="UsersFilter" msprop:DbSchemaName="Operation" msprop:DbTableName="UsersFilter" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="UsersFilterID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="78db35b6-ef58-4591-944f-31f466f077c1" msprop:DbColumnName="UsersFilterID" msprop:FriendlyName="UsersFilterID" type="xs:long" />
+                  <xs:element name="UsersID" msprop:design-time-name="a2ec4576-c748-467a-ac51-5fb9bad6f49d" msprop:DbColumnName="UsersID" msprop:FriendlyName="UsersID" type="xs:long" />
+                  <xs:element name="ProviderID" msprop:design-time-name="b36d9c4d-8d77-4267-815e-287ed5cb4f0a" msprop:DbColumnName="ProviderID" msprop:FriendlyName="ProviderID" type="xs:int" />
+                  <xs:element name="SearchFilter" msprop:design-time-name="74cba8cc-dcf9-4f4f-ae72-a0ee0c930de4" msprop:DbColumnName="SearchFilter" msprop:FriendlyName="SearchFilter" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="isEnabled" msprop:design-time-name="f603863e-6842-43fd-b5d1-eb2725049ece" msprop:DbColumnName="isEnabled" msprop:FriendlyName="isEnabled" type="xs:boolean" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="rpt_SalaryList" msprop:design-time-name="f4a4aab6-700d-43ca-95fa-732831257a2c" msprop:FriendlyName="SalaryList" msprop:DbSchemaName="rpt" msprop:DbTableName="SalaryList" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="SalaryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="c7a358b5-ba99-4b1d-a066-1f6f227bcde8" msprop:DbColumnName="SalaryID" msprop:FriendlyName="SalaryID" type="xs:long" />
+                  <xs:element name="UsersFilterID" msprop:design-time-name="2a9cd996-bf82-4e5c-bdea-f8eb71ccc662" msprop:DbColumnName="UsersFilterID" msprop:FriendlyName="UsersFilterID" type="xs:long" />
+                  <xs:element name="ProviderID" msprop:design-time-name="6092567d-c116-410c-a761-e52374378c16" msprop:DbColumnName="ProviderID" msprop:FriendlyName="ProviderID" type="xs:int" />
+                  <xs:element name="VacancyID" msprop:design-time-name="7dd616fe-92d0-4b92-bb78-c3eafb657bde" msprop:DbColumnName="VacancyID" msprop:FriendlyName="VacancyID" type="xs:long" />
+                  <xs:element name="CountOfVacancy" msprop:design-time-name="01e02d0f-e4a3-454e-8933-e04a0b7c261f" msprop:DbColumnName="CountOfVacancy" msprop:FriendlyName="CountOfVacancy" type="xs:int" />
+                  <xs:element name="CountVacanciesWithSum" msprop:design-time-name="3aee2914-ce93-422c-8792-ee59872018de" msprop:DbColumnName="CountVacanciesWithSum" msprop:FriendlyName="CountVacanciesWithSum" type="xs:int" minOccurs="0" />
+                  <xs:element name="TotalVacancies" msprop:design-time-name="f45cc3f4-0e8c-4491-a359-613578e47a08" msprop:DbColumnName="TotalVacancies" msprop:FriendlyName="TotalVacancies" type="xs:int" />
+                  <xs:element name="Salary" msprop:design-time-name="573e0835-9085-4485-a53a-9044e9b987eb" msprop:DbColumnName="Salary" msprop:FriendlyName="Salary" type="xs:decimal" />
+                  <xs:element name="DateActual" msprop:design-time-name="942c0bbe-1838-4c56-929a-b365ffe13eeb" msprop:DbColumnName="DateActual" msprop:FriendlyName="DateActual" type="xs:dateTime" />
+                  <xs:element name="DateRecord" msdata:DataType="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:design-time-name="bcdd1391-4a4e-405e-af4b-a7d62ea2461a" msprop:DbColumnName="DateRecord" msprop:FriendlyName="DateRecord" type="xs:anyType" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Operation_Users" msprop:design-time-name="1a1a1344-ac71-4042-ac72-d150389e48a1" msprop:FriendlyName="Users" msprop:DbSchemaName="Operation" msprop:DbTableName="Users" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="UserID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="b29f7550-6891-47da-8fb0-280bd8bfbc98" msprop:DbColumnName="UserID" msprop:FriendlyName="UserID" type="xs:long" />
+                  <xs:element name="OperatorName" msprop:design-time-name="fc1d9cf5-a7b1-4188-8513-16957c555377" msprop:DbColumnName="OperatorName" msprop:FriendlyName="OperatorName">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="PermissionID" msprop:design-time-name="df1ca370-e43c-443d-b80d-23f80bc1cac0" msprop:DbColumnName="PermissionID" msprop:FriendlyName="PermissionID" type="xs:int" />
+                  <xs:element name="Email" msprop:design-time-name="ff78cbb8-0776-4602-bb6f-2f28b37e3336" msprop:DbColumnName="Email" msprop:FriendlyName="Email" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="App_Providers" msprop:design-time-name="fd9571a2-b32f-47ec-b83b-aa1a5369a5e7" msprop:FriendlyName="Providers" msprop:DbSchemaName="App" msprop:DbTableName="Providers" msprop:TableType="Table">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="ProviderID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:design-time-name="9643a54e-158a-4d0b-ac2a-f5bdb7833b41" msprop:DbColumnName="ProviderID" msprop:FriendlyName="ProviderID" type="xs:int" />
+                  <xs:element name="Name" msprop:design-time-name="2205db7e-4c79-428e-b2b3-12dc18e5a789" msprop:DbColumnName="Name" msprop:FriendlyName="Name">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="URLAdress" msprop:design-time-name="465b9788-0f3f-4ed9-b564-acc041b08cca" msprop:DbColumnName="URLAdress" msprop:FriendlyName="URLAdress">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="remark" msprop:design-time-name="8b21cddd-cac3-43b3-bdc6-9b6f5c76849b" msprop:DbColumnName="remark" msprop:FriendlyName="remark" minOccurs="0">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="RecordDate" msdata:DataType="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:design-time-name="dc4e9052-215f-4c15-a7bc-bbd93b40c406" msprop:DbColumnName="RecordDate" msprop:FriendlyName="RecordDate" type="xs:anyType" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//Operation_UsersFilter" />
+          <xs:field xpath="UsersFilterID" />
+        </xs:unique>
+        <xs:unique name="rpt_SalaryList_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//rpt_SalaryList" />
+          <xs:field xpath="SalaryID" />
+        </xs:unique>
+        <xs:unique name="Operation_Users_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//Operation_Users" />
+          <xs:field xpath="UserID" />
+        </xs:unique>
+        <xs:unique name="App_Providers_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//App_Providers" />
+          <xs:field xpath="ProviderID" />
+        </xs:unique>
+        <xs:keyref name="FK_SalaryList_ImporterProvider" refer="App_Providers_Constraint1">
+          <xs:selector xpath=".//rpt_SalaryList" />
+          <xs:field xpath="ProviderID" />
+        </xs:keyref>
+        <xs:keyref name="FK_SalaryList_UsersFilter" refer="Constraint1">
+          <xs:selector xpath=".//rpt_SalaryList" />
+          <xs:field xpath="UsersFilterID" />
+        </xs:keyref>
+        <xs:keyref name="FK_ProvidersFilter_Provider" refer="App_Providers_Constraint1">
+          <xs:selector xpath=".//Operation_UsersFilter" />
+          <xs:field xpath="ProviderID" />
+        </xs:keyref>
+        <xs:keyref name="FK_UsersFilter_Users" refer="Operation_Users_Constraint1">
+          <xs:selector xpath=".//Operation_UsersFilter" />
+          <xs:field xpath="UsersID" />
+        </xs:keyref>
+      </xs:element>
+    </xs:schema>
+    <Vacancy_x0020_Agregator xmlns="" />
+  </Schema>
+</DataSourceView>

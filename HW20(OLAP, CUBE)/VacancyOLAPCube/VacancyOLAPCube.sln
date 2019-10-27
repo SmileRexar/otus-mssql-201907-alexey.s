@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "VacancyOLAPCube", "VacancyOLAPCube\VacancyOLAPCube.dwproj", "{B69F564A-0F18-4D62-8351-ADC3A5DA1988}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B69F564A-0F18-4D62-8351-ADC3A5DA1988}.Development|Default.ActiveCfg = Development
+		{B69F564A-0F18-4D62-8351-ADC3A5DA1988}.Development|Default.Build.0 = Development
+		{B69F564A-0F18-4D62-8351-ADC3A5DA1988}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C4B4B69-D457-4545-8E8B-F92CCE5A49BD}
+	EndGlobalSection
+EndGlobal
