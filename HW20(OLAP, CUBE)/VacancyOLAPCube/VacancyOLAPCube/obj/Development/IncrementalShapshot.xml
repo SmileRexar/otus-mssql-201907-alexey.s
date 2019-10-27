@@ -61,7 +61,7 @@
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.Cube</Type>
-        <TimeStamp>iv8StzZEulNyVIH9ULy7qFZIvg8=10/27/2019 5:48:26 PM10/27/2019 5:40:18 PMjl9moEUNgvpHrulBBq2qJoAvYng=10/27/2019 5:40:18 PM10/27/2019 5:40:18 PM</TimeStamp>
+        <TimeStamp>iv8StzZEulNyVIH9ULy7qFZIvg8=10/27/2019 7:10:16 PM10/27/2019 5:40:18 PMjl9moEUNgvpHrulBBq2qJoAvYng=10/27/2019 5:40:18 PM10/27/2019 5:40:18 PM</TimeStamp>
         <ID>
           <String>Vacancy Agregator</String>
         </ID>
@@ -78,5 +78,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2019-10-27T19:00:23.653333Z</LastDeployed>
+  <LastDeployed>2019-10-27T19:11:50.786667Z</LastDeployed>
 </DeploymentSnapshot>
