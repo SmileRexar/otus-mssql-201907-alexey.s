@@ -82,6 +82,26 @@ insert into [Sales].OrdersPartitioned
 select * from [Sales].Orders
 
 
+
+/*
+Блочная переброска
+1) Сделать промежуточную таблицу 
+SELECT * INTO [Sales].CopyOrders
+FROM Sales.[Orders];
+
+2) Удалять данные из промежуточной перебрасывая в оригинальную
+while 1=1
+begin
+DELETE top(3000) [Sales].CopyOrders
+OUTPUT DELETED.* INTO [Sales].[OrdersPartitioned]
+ IF(@@ROWCOUNT = 0)
+    BREAK
+WAITFOR DELAY '00:00:00.100';
+print @@ROWCOUNT
+end
+*/
+
+
 --Таблица с партициями
 SELECT TOP (1000) [OrderID]
       ,[CustomerID]
