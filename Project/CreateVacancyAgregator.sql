@@ -1,25 +1,25 @@
 USE [master]
 GO
-/****** Object:  Database [VacancyAgregator]    Script Date: 11/27/2019 5:39:49 AM ******/
+/****** Object:  Database [VacancyAgregator]    Script Date: 12/16/2019 3:52:10 PM ******/
 CREATE DATABASE [VacancyAgregator]
 GO
+/****** Object:  User [lex]    Script Date: 12/16/2019 3:52:10 PM ******/
+/*CREATE USER [lex] FOR LOGIN [lex] WITH DEFAULT_SCHEMA=[dbo]
+GO
+*/
 USE [VacancyAgregator]
 GO
-/****** Object:  User [lex]    Script Date: 11/27/2019 5:39:50 AM
-CREATE USER [lex] FOR LOGIN [lex] WITH DEFAULT_SCHEMA=[dbo]
-GO
- ******/
- 
-/****** Object:  Schema [App]    Script Date: 11/27/2019 5:39:50 AM ******/
+
+/****** Object:  Schema [App]    Script Date: 12/16/2019 3:52:10 PM ******/
 CREATE SCHEMA [App]
 GO
-/****** Object:  Schema [Operation]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Schema [Operation]    Script Date: 12/16/2019 3:52:10 PM ******/
 CREATE SCHEMA [Operation]
 GO
-/****** Object:  Schema [rpt]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Schema [rpt]    Script Date: 12/16/2019 3:52:10 PM ******/
 CREATE SCHEMA [rpt]
 GO
-/****** Object:  Table [App].[Programs]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [App].[Programs]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -34,7 +34,7 @@ CREATE TABLE [App].[Programs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [App].[Providers]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [App].[Providers]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -51,7 +51,7 @@ CREATE TABLE [App].[Providers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [App].[Settings]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [App].[Settings]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -68,22 +68,7 @@ CREATE TABLE [App].[Settings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Adapter]    Script Date: 11/27/2019 5:39:50 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Adapter](
-	[AdapterID] [int] IDENTITY(1,1) NOT NULL,
-	[AdapterName] [nvarchar](150) NOT NULL,
-	[Info] [nvarchar](150) NULL,
- CONSTRAINT [PK_Adapter] PRIMARY KEY CLUSTERED 
-(
-	[AdapterID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[ErrorLog]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [dbo].[ErrorLog]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -104,7 +89,7 @@ CREATE TABLE [dbo].[ErrorLog](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Jobs]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [dbo].[Jobs]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -121,7 +106,7 @@ ID] [int] NULL,
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Schedule]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [dbo].[Schedule]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -140,22 +125,7 @@ ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [Operation].[PermissionRules]    Script Date: 11/27/2019 5:39:50 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [Operation].[PermissionRules](
-	[PermissionRulesID] [int] IDENTITY(1,1) NOT NULL,
-	[PermissionRulesName] [nvarchar](150) NULL,
-	[isEnabled] [bit] NOT NULL,
- CONSTRAINT [PK_PermissionRules] PRIMARY KEY CLUSTERED 
-(
-	[PermissionRulesID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [Operation].[Permissions]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [Operation].[Permissions]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -163,7 +133,6 @@ GO
 CREATE TABLE [Operation].[Permissions](
 	[PermissionID] [int] IDENTITY(1,1) NOT NULL,
 	[PermissionName] [nvarchar](150) NULL,
-	[PermissionRulesID] [int] NULL,
 	[ProgramsID] [int] NOT NULL,
 	[RecordItem] [datetimeoffset](7) NOT NULL,
  CONSTRAINT [PK_Permissions] PRIMARY KEY CLUSTERED 
@@ -172,7 +141,22 @@ CREATE TABLE [Operation].[Permissions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [Operation].[Users]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [Operation].[UserPermissions]    Script Date: 12/16/2019 3:52:10 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [Operation].[UserPermissions](
+	[UserPermissionID] [bigint] IDENTITY(1,1) NOT NULL,
+	[UserID] [bigint] NULL,
+	[PermissionIS] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[UserPermissionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [Operation].[Users]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -188,7 +172,7 @@ CREATE TABLE [Operation].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [Operation].[UsersFilter]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [Operation].[UsersFilter]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -205,7 +189,7 @@ CREATE TABLE [Operation].[UsersFilter](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [rpt].[SalaryList]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  Table [rpt].[SalaryList]    Script Date: 12/16/2019 3:52:10 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -214,7 +198,6 @@ CREATE TABLE [rpt].[SalaryList](
 	[SalaryID] [bigint] IDENTITY(1,1) NOT NULL,
 	[UsersFilterID] [bigint] NOT NULL,
 	[ProviderID] [int] NOT NULL,
-	[VacancyID] [bigint] NOT NULL,
 	[CountOfVacancy] [int] NOT NULL,
 	[CountVacanciesWithSum] [int] NULL,
 	[TotalVacancies] [int] NOT NULL,
@@ -227,20 +210,12 @@ CREATE TABLE [rpt].[SalaryList](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [rpt].[VacancyLines]    Script Date: 11/27/2019 5:39:50 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [rpt].[VacancyLines](
-	[VacancyID] [bigint] IDENTITY(1,1) NOT NULL,
-	[UsersFilterID] [bigint] NULL,
-	[DateRecord] [datetimeoffset](7) NOT NULL,
- CONSTRAINT [PK_VacancyList] PRIMARY KEY CLUSTERED 
+/****** Object:  Index [IX_SalaryList_Salary_UsersFilterID]    Script Date: 12/16/2019 3:52:10 PM ******/
+CREATE NONCLUSTERED INDEX [IX_SalaryList_Salary_UsersFilterID] ON [rpt].[SalaryList]
 (
-	[VacancyID] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+	[Salary] ASC
+)
+INCLUDE([UsersFilterID]) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 ALTER TABLE [App].[Providers] ADD  CONSTRAINT [DF_ImporterProvider_RecordDate]  DEFAULT (getdate()) FOR [RecordDate]
 GO
@@ -251,8 +226,6 @@ GO
 ALTER TABLE [rpt].[SalaryList] ADD  CONSTRAINT [DF_SalaryList_TotalVacancies]  DEFAULT ((0)) FOR [TotalVacancies]
 GO
 ALTER TABLE [rpt].[SalaryList] ADD  CONSTRAINT [DF_SalaryList_DateInseted]  DEFAULT (getdate()) FOR [DateRecord]
-GO
-ALTER TABLE [rpt].[VacancyLines] ADD  CONSTRAINT [DF_VacancyList_DateInserted]  DEFAULT (getdate()) FOR [DateRecord]
 GO
 ALTER TABLE [App].[Settings]  WITH CHECK ADD  CONSTRAINT [FK_Settings_Programs] FOREIGN KEY([ProgramsID])
 REFERENCES [App].[Programs] ([ProgramID])
@@ -283,6 +256,16 @@ ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 ALTER TABLE [Operation].[Permissions] CHECK CONSTRAINT [FK_Permissions_Programs]
+GO
+ALTER TABLE [Operation].[UserPermissions]  WITH CHECK ADD  CONSTRAINT [FK_category] FOREIGN KEY([PermissionIS])
+REFERENCES [Operation].[Permissions] ([PermissionID])
+GO
+ALTER TABLE [Operation].[UserPermissions] CHECK CONSTRAINT [FK_category]
+GO
+ALTER TABLE [Operation].[UserPermissions]  WITH CHECK ADD  CONSTRAINT [FK_UserPermissions_Users] FOREIGN KEY([UserID])
+REFERENCES [Operation].[Users] ([UserID])
+GO
+ALTER TABLE [Operation].[UserPermissions] CHECK CONSTRAINT [FK_UserPermissions_Users]
 GO
 ALTER TABLE [Operation].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Operators_Permissions] FOREIGN KEY([PermissionID])
 REFERENCES [Operation].[Permissions] ([PermissionID])
@@ -317,19 +300,7 @@ REFERENCES [Operation].[UsersFilter] ([UsersFilterID])
 GO
 ALTER TABLE [rpt].[SalaryList] CHECK CONSTRAINT [FK_SalaryList_UsersFilter]
 GO
-ALTER TABLE [rpt].[SalaryList]  WITH CHECK ADD  CONSTRAINT [FK_SalaryList_VacancyList] FOREIGN KEY([VacancyID])
-REFERENCES [rpt].[VacancyLines] ([VacancyID])
-GO
-ALTER TABLE [rpt].[SalaryList] CHECK CONSTRAINT [FK_SalaryList_VacancyList]
-GO
-ALTER TABLE [rpt].[VacancyLines]  WITH CHECK ADD  CONSTRAINT [FK_VacancyLines_UsersFilter] FOREIGN KEY([UsersFilterID])
-REFERENCES [Operation].[UsersFilter] ([UsersFilterID])
-ON UPDATE CASCADE
-ON DELETE CASCADE
-GO
-ALTER TABLE [rpt].[VacancyLines] CHECK CONSTRAINT [FK_VacancyLines_UsersFilter]
-GO
-/****** Object:  StoredProcedure [App].[AddProvider]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  StoredProcedure [App].[AddProvider]    Script Date: 12/16/2019 3:52:11 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -376,11 +347,12 @@ BEGIN
     END;
 END;
 GO
-/****** Object:  StoredProcedure [App].[AddSalary]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  StoredProcedure [App].[AddSalary]    Script Date: 12/16/2019 3:52:11 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+-- Alter Procedure AddSalary
 -- Create Procedure AddSalary
 -- Create Procedure AddSalary
 -- Alter Procedure AddSalary
@@ -436,20 +408,20 @@ BEGIN
 			end
 
 			/*№4 Создать привязку вакансий к провайдеру */
-
-			INSERT rpt.VacancyLines (UsersFilterID)
+			/*
+			INSERT rpt.VacancyLines1 (UsersFilterID)
 			SELECT p.UsersFilterID  FROM 
 			Operation.UsersFilter p
 			left join 
-			rpt.VacancyLines v
+			rpt.VacancyLines1 v
 			on p.UsersFilterID=v.UsersFilterID
 			where v.UsersFilterID is null
-
+			*/
 			/*№5 Создать зарплату для вакансии */
 
 			/*Перепишем позже*/
 
-			insert rpt.SalaryList(UsersFilterID, ProviderID,VacancyID,CountOfVacancy,TotalVacancies, Salary,DateActual)
+			insert rpt.SalaryList(UsersFilterID, ProviderID,/*VacancyID,*/CountOfVacancy,TotalVacancies, Salary,DateActual)
 			values(
 			( 
 						SELECT  top(1) Operation.UsersFilter.UsersFilterID
@@ -459,14 +431,14 @@ BEGIN
 			
 			),
 			(select top(1) ProviderID from App.Providers where Name=@ProviderName),
-			(
-			SELECT rpt.VacancyLines.VacancyID
+			/*(
+			SELECT rpt.VacancyLines1.VacancyID
 			FROM Operation.Users
 				 INNER JOIN Operation.UsersFilter ON Operation.Users.UserID = Operation.UsersFilter.UsersID
-				 INNER JOIN rpt.VacancyLines ON Operation.UsersFilter.UsersFilterID = rpt.VacancyLines.UsersFilterID
+				 INNER JOIN rpt.VacancyLines1 ON Operation.UsersFilter.UsersFilterID = rpt.VacancyLines1.UsersFilterID
 			WHERE(Operation.Users.OperatorName = @UserName)
 				 AND (Operation.UsersFilter.SearchFilter = @SearchFilter)
-			),
+			),*/
 			@CountOfVacan,
 			@TotalOfVacan,
 			@Salary,
@@ -483,7 +455,7 @@ BEGIN
     END;
 END;
 GO
-/****** Object:  StoredProcedure [App].[AddUser]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  StoredProcedure [App].[AddUser]    Script Date: 12/16/2019 3:52:11 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -545,7 +517,7 @@ BEGIN
     END;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[uspGetSalaryByProvider]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  StoredProcedure [dbo].[uspGetSalaryByProvider]    Script Date: 12/16/2019 3:52:11 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -558,7 +530,7 @@ CREATE PROCEDURE [dbo].[uspGetSalaryByProvider]
 AS
 BEGIN
     SET NOCOUNT ON;
-SELECT        Operation.Users.OperatorName, Operation.Users.UserID, rpt.SalaryList.SalaryID, rpt.SalaryList.UsersFilterID, rpt.SalaryList.ProviderID, rpt.SalaryList.VacancyID, rpt.SalaryList.CountOfVacancy, 
+SELECT        Operation.Users.OperatorName, Operation.Users.UserID, rpt.SalaryList.SalaryID, rpt.SalaryList.UsersFilterID, rpt.SalaryList.ProviderID, rpt.SalaryList.CountOfVacancy, 
                          rpt.SalaryList.CountVacanciesWithSum, rpt.SalaryList.TotalVacancies, rpt.SalaryList.Salary, rpt.SalaryList.DateActual, rpt.SalaryList.DateRecord, Operation.UsersFilter.SearchFilter
 FROM            Operation.UsersFilter INNER JOIN
                          Operation.Users ON Operation.UsersFilter.UsersID = Operation.Users.UserID INNER JOIN
@@ -569,7 +541,7 @@ ORDER BY App.Providers.ProviderID
 
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[uspLogError]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  StoredProcedure [dbo].[uspLogError]    Script Date: 12/16/2019 3:52:11 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -639,7 +611,7 @@ BEGIN
     END CATCH
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[uspPrintError]    Script Date: 11/27/2019 5:39:50 AM ******/
+/****** Object:  StoredProcedure [dbo].[uspPrintError]    Script Date: 12/16/2019 3:52:11 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
