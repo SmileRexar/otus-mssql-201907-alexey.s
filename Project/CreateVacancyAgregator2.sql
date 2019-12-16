@@ -2,6 +2,7 @@ USE [master]
 GO
 /****** Object:  Database [VacancyAgregator2]    Script Date: 12/16/2019 7:01:40 PM ******/
 CREATE DATABASE [VacancyAgregator2]
+GO
 USE [VacancyAgregator2]
 GO
 /****** Object:  User [lex]    Script Date: 12/16/2019 7:01:41 PM ******/
