@@ -1,25 +1,24 @@
 USE [master]
 GO
-/****** Object:  Database [VacancyAgregator]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Database [VacancyAgregator]    Script Date: 12/16/2019 7:01:40 PM ******/
 CREATE DATABASE [VacancyAgregator]
 GO
-/****** Object:  User [lex]    Script Date: 12/16/2019 3:52:10 PM ******/
-/*CREATE USER [lex] FOR LOGIN [lex] WITH DEFAULT_SCHEMA=[dbo]
-GO
-*/
 USE [VacancyAgregator]
 GO
-
-/****** Object:  Schema [App]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  User [lex]    Script Date: 12/16/2019 7:01:41 PM ******/
+/*
+CREATE USER [lex] FOR LOGIN [lex] WITH DEFAULT_SCHEMA=[dbo]
+GO*/
+/****** Object:  Schema [App]    Script Date: 12/16/2019 7:01:41 PM ******/
 CREATE SCHEMA [App]
 GO
-/****** Object:  Schema [Operation]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Schema [Operation]    Script Date: 12/16/2019 7:01:41 PM ******/
 CREATE SCHEMA [Operation]
 GO
-/****** Object:  Schema [rpt]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Schema [rpt]    Script Date: 12/16/2019 7:01:41 PM ******/
 CREATE SCHEMA [rpt]
 GO
-/****** Object:  Table [App].[Programs]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [App].[Programs]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -34,7 +33,7 @@ CREATE TABLE [App].[Programs](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [App].[Providers]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [App].[Providers]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -51,7 +50,7 @@ CREATE TABLE [App].[Providers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [App].[Settings]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [App].[Settings]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -68,7 +67,7 @@ CREATE TABLE [App].[Settings](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ErrorLog]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [dbo].[ErrorLog]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -89,7 +88,7 @@ CREATE TABLE [dbo].[ErrorLog](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Jobs]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [dbo].[Jobs]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -106,7 +105,7 @@ ID] [int] NULL,
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Schedule]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [dbo].[Schedule]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +124,7 @@ ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [Operation].[Permissions]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [Operation].[Permissions]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -141,7 +140,7 @@ CREATE TABLE [Operation].[Permissions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [Operation].[UserPermissions]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [Operation].[UserPermissions]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -156,7 +155,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [Operation].[Users]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [Operation].[Users]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -172,7 +171,7 @@ CREATE TABLE [Operation].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [Operation].[UsersFilter]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [Operation].[UsersFilter]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -189,7 +188,7 @@ CREATE TABLE [Operation].[UsersFilter](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [rpt].[SalaryList]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Table [rpt].[SalaryList]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -210,7 +209,7 @@ CREATE TABLE [rpt].[SalaryList](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Index [IX_SalaryList_Salary_UsersFilterID]    Script Date: 12/16/2019 3:52:10 PM ******/
+/****** Object:  Index [IX_SalaryList_Salary_UsersFilterID]    Script Date: 12/16/2019 7:01:41 PM ******/
 CREATE NONCLUSTERED INDEX [IX_SalaryList_Salary_UsersFilterID] ON [rpt].[SalaryList]
 (
 	[Salary] ASC
@@ -300,7 +299,7 @@ REFERENCES [Operation].[UsersFilter] ([UsersFilterID])
 GO
 ALTER TABLE [rpt].[SalaryList] CHECK CONSTRAINT [FK_SalaryList_UsersFilter]
 GO
-/****** Object:  StoredProcedure [App].[AddProvider]    Script Date: 12/16/2019 3:52:11 PM ******/
+/****** Object:  StoredProcedure [App].[AddProvider]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -332,22 +331,23 @@ BEGIN
                             AND dpu.name = @UserName)
     BEGIN
         BEGIN TRY
+		BEGIN TRANSACTION;
 
             DECLARE @SQL nvarchar(max) = N'ALTER ROLE ' + QUOTENAME(@RoleName)
                                        + N' ADD MEMBER ' + QUOTENAME(@UserName) + N';'
             EXECUTE (@SQL);
 
             PRINT N'User ' + @UserName + N' added to role ' + @RoleName;
-
+		COMMIT TRANSACTION;
         END TRY
         BEGIN CATCH
             PRINT N'Unable to add user ' + @UserName + N' to role ' + @RoleName;
-            THROW;
+          --  THROW;
         END CATCH;
     END;
 END;
 GO
-/****** Object:  StoredProcedure [App].[AddSalary]    Script Date: 12/16/2019 3:52:11 PM ******/
+/****** Object:  StoredProcedure [App].[AddSalary]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -373,12 +373,10 @@ CREATE PROCEDURE [App].[AddSalary]
 WITH EXECUTE AS OWNER
 AS
 BEGIN
-    SET NOCOUNT ON;
-    SET XACT_ABORT ON;
- 
-    BEGIN
+SET XACT_ABORT ON
+	BEGIN TRANSACTION;
         BEGIN TRY
-
+		
 				/*
 		RAISERROR ('Error raised in TRY block.', -- Message text.
                16, -- Severity.
@@ -390,21 +388,18 @@ BEGIN
 			IF NOT EXISTS (SELECT 1 FROM app.Providers WHERE Name=@ProviderName) 
 			begin
 			print 'Provider not found ';
-			return;
 			end
 
 			/*№2 Если не указан пользователь - выход   */
 			IF NOT EXISTS (SELECT 1 FROM Operation.Users WHERE OperatorName=@UserName) 
 			begin
 			print 'User not found ';
-			return;
 			end
 
 			/*№3 Если ключового слова нет - создать в  ProvidersFilter*/
 			IF NOT EXISTS (SELECT 1 FROM Operation.UsersFilter WHERE SearchFilter=@SearchFilter) 
 			begin
 			print 'SearchFilter not found ';
-			return;
 			end
 
 			/*№4 Создать привязку вакансий к провайдеру */
@@ -446,16 +441,20 @@ BEGIN
 			)
 
 			print 'operation success'
-
+		COMMIT TRANSACTION;
         END TRY
         BEGIN CATCH
+
+        IF @@TRANCOUNT > 0
+        BEGIN
+            ROLLBACK TRANSACTION;
+        END
 		  EXECUTE [dbo].[uspLogError];
-             THROW;	  
+            -- THROW;	  
         END CATCH;
     END;
-END;
 GO
-/****** Object:  StoredProcedure [App].[AddUser]    Script Date: 12/16/2019 3:52:11 PM ******/
+/****** Object:  StoredProcedure [App].[AddUser]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -477,11 +476,11 @@ WITH EXECUTE AS OWNER
 AS
 BEGIN
     SET NOCOUNT ON;
-    SET XACT_ABORT ON;
+ --   SET XACT_ABORT ON;
  
     BEGIN
         BEGIN TRY
-
+		 BEGIN TRANSACTION;
 				/*
 		RAISERROR ('Error raised in TRY block.', -- Message text.
                16, -- Severity.
@@ -508,16 +507,21 @@ BEGIN
 			)
 
 			print 'operation success'
-
+		COMMIT TRANSACTION;
         END TRY
         BEGIN CATCH
+		  IF @@TRANCOUNT > 0
+        BEGIN
+            ROLLBACK TRANSACTION;
+        END
+
 		  EXECUTE [dbo].[uspLogError];
-             THROW;	  
+           --  THROW;	  
         END CATCH;
     END;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[uspGetSalaryByProvider]    Script Date: 12/16/2019 3:52:11 PM ******/
+/****** Object:  StoredProcedure [dbo].[uspGetSalaryByProvider]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -541,7 +545,7 @@ ORDER BY App.Providers.ProviderID
 
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[uspLogError]    Script Date: 12/16/2019 3:52:11 PM ******/
+/****** Object:  StoredProcedure [dbo].[uspLogError]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -611,7 +615,7 @@ BEGIN
     END CATCH
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[uspPrintError]    Script Date: 12/16/2019 3:52:11 PM ******/
+/****** Object:  StoredProcedure [dbo].[uspPrintError]    Script Date: 12/16/2019 7:01:41 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
