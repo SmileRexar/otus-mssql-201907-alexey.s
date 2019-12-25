@@ -96,3 +96,55 @@ FROM
                                                     [Jessie, ND])) AS PVT
 ORDER BY InvoiceMonth;
 
+
+
+
+/*
+2. Для всех клиентов с именем, в котором есть Tailspin Toys
+вывести все адреса, которые есть в таблице, в одной колонке
+
+Пример результатов
+CustomerName	AddressLine
+Tailspin Toys (Head Office)	Shop 38
+Tailspin Toys (Head Office)	1877 Mittal Road
+Tailspin Toys (Head Office)	PO Box 8975
+Tailspin Toys (Head Office)	Ribeiroville
+*/
+
+
+SELECT CustomerName, 
+       DA
+FROM
+(
+    SELECT DeliveryAddressLine1, 
+           DeliveryAddressLine2, 
+           CustomerName
+    FROM Sales.Customers
+    WHERE CustomerName LIKE 'Tailspin Toys%'
+) D UNPIVOT(DA FOR AddressDataSet IN(DeliveryAddressLine1, 
+                                     DeliveryAddressLine2)) AS UNP;
+
+/*
+3. В таблице стран есть поля с кодом страны цифровым и буквенным
+сделайте выборку ИД страны, название, код - чтобы в поле был либо цифровой либо буквенный код
+Пример выдачи
+
+CountryId	CountryName	Code
+1	Afghanistan	AFG
+1	Afghanistan	4
+3	Albania	ALB
+3	Albania	8
+*/
+
+SELECT CountryID, 
+       CountryName, 
+       Code
+FROM
+(
+    SELECT CountryID, 
+           CountryName, 
+           CAST(IsoAlpha3Code AS NVARCHAR) AS IsoAlpha3, 
+           CAST(IsoNumericCode AS NVARCHAR) AS IsoNumeric
+    FROM Application.Countries
+) T UNPIVOT(Code FOR CodeList IN(IsoAlpha3, 
+                           IsoNumeric)) AS UNP;
